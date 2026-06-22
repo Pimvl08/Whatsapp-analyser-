@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-paper text-ink antialiased font-sans;
+  }
+  /* Numeric alignment for money columns */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum' 1;
+  }
+}
+
+@layer components {
+  .field-label {
+    @apply block text-[11px] font-semibold uppercase tracking-wider text-ink/45 mb-1.5;
+  }
+  .field-input {
+    @apply w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-ink
+      shadow-sm transition placeholder:text-slate-300
+      focus:border-accent focus:ring-2 focus:ring-accent/20 focus:outline-none;
+  }
+  .field-input-sm {
+    @apply w-full rounded-md border border-slate-200 bg-white px-2.5 py-2 text-sm text-ink
+      transition placeholder:text-slate-300
+      focus:border-accent focus:ring-2 focus:ring-accent/20 focus:outline-none;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm
+      font-semibold transition active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .btn-primary {
+    @apply btn bg-ink text-white shadow-panel hover:bg-ink-700;
+  }
+  .btn-accent {
+    @apply btn bg-accent text-ink-900 shadow-panel hover:bg-accent-dark hover:text-white;
+  }
+  .btn-ghost {
+    @apply btn bg-white text-ink border border-slate-200 hover:border-slate-300 hover:bg-slate-50;
+  }
+  .btn-whatsapp {
+    @apply btn bg-[#1FA855] text-white shadow-panel hover:bg-[#178a45];
+  }
+  .panel {
+    @apply rounded-2xl bg-white shadow-panel border border-slate-200/70;
+  }
+}
+
+/* Slim, refined scrollbars */
+.scroll-slim::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.scroll-slim::-webkit-scrollbar-thumb {
+  background: #d3d8e0;
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+.scroll-slim::-webkit-scrollbar-thumb:hover {
+  background: #b9c0cc;
+  background-clip: content-box;
+}
