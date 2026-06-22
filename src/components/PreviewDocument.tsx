@@ -165,14 +165,20 @@ export default function PreviewDocument({ quote }: { quote: Quote }) {
         <div style={{ width: 300 }}>
           <SumRow label="Subtotaal" value={formatEuro(t.subtotal)} />
           {quote.discountEnabled && t.discount > 0 && (
-            <SumRow
-              label={
-                quote.discountType === 'percent'
-                  ? `Korting (${formatNumber(quote.discountValue)}%)`
-                  : 'Korting'
-              }
-              value={'− ' + formatEuro(t.discount)}
-            />
+            <>
+              <SumRow
+                label={
+                  quote.discountType === 'percent'
+                    ? `Korting (${formatNumber(quote.discountValue)}%)`
+                    : 'Korting'
+                }
+                value={'- ' + formatEuro(t.discount)}
+              />
+              <SumRow
+                label="Subtotaal na korting"
+                value={formatEuro(t.taxableBase)}
+              />
+            </>
           )}
           <SumRow label={`BTW (${quote.vatRate}%)`} value={formatEuro(t.vat)} />
           <div

@@ -229,11 +229,17 @@ export default function LineItems({ quote, onItems, onPatch }: Props) {
         <div className="mt-4 space-y-1.5 border-t border-slate-200 pt-3 text-sm">
           <Row label="Subtotaal" value={formatEuro(totals.subtotal)} />
           {quote.discountEnabled && totals.discount > 0 && (
-            <Row
-              label="Korting"
-              value={'− ' + formatEuro(totals.discount)}
-              accent
-            />
+            <>
+              <Row
+                label="Korting"
+                value={'- ' + formatEuro(totals.discount)}
+                accent
+              />
+              <Row
+                label="Subtotaal na korting"
+                value={formatEuro(totals.taxableBase)}
+              />
+            </>
           )}
           <Row
             label={`BTW (${quote.vatRate}%)`}

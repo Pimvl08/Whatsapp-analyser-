@@ -79,8 +79,9 @@ export async function generatePdf(quote: Quote): Promise<jsPDF> {
   }
 
   let pageNo = 0
-  const totalPagesPlaceholder = '{tp}'
 
+  // The footer is drawn per page, but the page number is stamped in a final
+  // pass once the total page count is known (see "Stamp page numbers" below).
   const drawFooter = () => {
     setDraw(doc, HAIR)
     doc.setLineWidth(0.3)
@@ -98,12 +99,6 @@ export async function generatePdf(quote: Quote): Promise<jsPDF> {
       .filter(Boolean)
       .join('   ·   ')
     doc.text(right || ' ', ML, FOOTER_Y + 8.5)
-    doc.text(
-      `Pagina ${pageNo} van ${totalPagesPlaceholder}`,
-      CONTENT_R,
-      FOOTER_Y + 8.5,
-      { align: 'right' },
-    )
   }
 
   const newPage = (first: boolean) => {
@@ -340,7 +335,8 @@ export async function generatePdf(quote: Quote): Promise<jsPDF> {
       quote.discountType === 'percent'
         ? `Korting (${formatNumber(quote.discountValue)}%)`
         : 'Korting'
-    rows.push([lbl, '− ' + formatEuro(totals.discount), false])
+    rows.push([lbl, '- ' + formatEuro(totals.discount), false])
+    rows.push(['Subtotaal na korting', formatEuro(totals.taxableBase), false])
   }
   rows.push([`BTW (${quote.vatRate}%)`, formatEuro(totals.vat), false])
 
@@ -436,23 +432,19 @@ export async function generatePdf(quote: Quote): Promise<jsPDF> {
   doc.text('Handtekening opdrachtgever', ML + 5, sigLineY + 4)
   doc.text('Datum', CONTENT_R - 70, sigLineY + 4)
 
-  // ---- Stamp total pages ---------------------------------------------------
-  const total = pageNo
+  // ---- Stamp page numbers --------------------------------------------------
+  // Now that every page exists we know the total, so we can draw an accurate
+  // "Pagina X van Y" on each page (no placeholder needed).
   const internal = doc.internal as unknown as {
     getNumberOfPages: () => number
   }
   const pages = internal.getNumberOfPages()
   for (let i = 1; i <= pages; i++) {
     doc.setPage(i)
-    // Re-stamp the footer page count by overdrawing the placeholder region.
-    // Simpler: jsPDF has no direct text replace, so we rely on having written
-    // the placeholder; redraw a clean count over it.
-    setFill(doc, [255, 255, 255])
-    doc.rect(CONTENT_R - 30, FOOTER_Y + 5.5, 30, 5, 'F')
     doc.setFont('helvetica', 'normal')
     doc.setFontSize(7.5)
     setColor(doc, MUTED)
-    doc.text(`Pagina ${i} van ${total}`, CONTENT_R, FOOTER_Y + 8.5, {
+    doc.text(`Pagina ${i} van ${pages}`, CONTENT_R, FOOTER_Y + 8.5, {
       align: 'right',
     })
   }
