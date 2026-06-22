@@ -13,13 +13,13 @@ export default function CustomerForm({ customer, onChange }: Props) {
         label="Naam klant"
         value={customer.name}
         onChange={(name) => onChange({ name })}
-        placeholder="De heer J. Bakker"
+        placeholder="Naam van de klant"
       />
       <TextArea
         label="Factuuradres"
         value={customer.address}
         onChange={(address) => onChange({ address })}
-        placeholder={'Lindelaan 27\n7742 GS Coevorden'}
+        placeholder={'Voorbeeldstraat 1\n1234 AB Voorbeeldstad'}
         rows={2}
       />
       <label className="flex cursor-pointer items-center gap-2.5 select-none">
@@ -47,7 +47,7 @@ export default function CustomerForm({ customer, onChange }: Props) {
           label="Telefoon"
           value={customer.phone}
           onChange={(phone) => onChange({ phone })}
-          placeholder="06 - 24 17 88 03"
+          placeholder="06 1234 5678"
         />
         <TextField
           label="E-mail"

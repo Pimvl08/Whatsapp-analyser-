@@ -18,13 +18,13 @@ export default function CompanyForm({ company, onChange }: Props) {
         label="Bedrijfsnaam"
         value={company.name}
         onChange={(name) => onChange({ name })}
-        placeholder="Van der Veen Dakwerken"
+        placeholder="Voorbeeld Bedrijf B.V."
       />
       <TextArea
         label="Adres"
         value={company.address}
         onChange={(address) => onChange({ address })}
-        placeholder={'Ambachtsweg 14\n7741 KD Coevorden'}
+        placeholder={'Voorbeeldstraat 12\n1234 AB Voorbeeldstad'}
         rows={2}
       />
       <div className="grid grid-cols-2 gap-3">
@@ -32,19 +32,19 @@ export default function CompanyForm({ company, onChange }: Props) {
           label="KvK-nummer"
           value={company.kvk}
           onChange={(kvk) => onChange({ kvk })}
-          placeholder="67 89 21 04"
+          placeholder="12345678"
         />
         <TextField
           label="BTW-nummer"
           value={company.vat}
           onChange={(vat) => onChange({ vat })}
-          placeholder="NL8612.34.567.B01"
+          placeholder="NL123456789B01"
         />
         <TextField
           label="Telefoon"
           value={company.phone}
           onChange={(phone) => onChange({ phone })}
-          placeholder="0524 - 51 88 20"
+          placeholder="012 345 6789"
         />
         <TextField
           label="E-mail"
@@ -58,7 +58,7 @@ export default function CompanyForm({ company, onChange }: Props) {
         label="IBAN"
         value={company.iban}
         onChange={(iban) => onChange({ iban })}
-        placeholder="NL24 RABO 0145 9982 33"
+        placeholder="NL12 BANK 0123 4567 89"
       />
     </div>
   )
