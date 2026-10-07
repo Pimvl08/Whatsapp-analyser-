@@ -1,0 +1,81 @@
+{
+  "id": "demo-acs-002",
+  "number": "DEMO-002",
+  "date": "2026-10-07",
+  "validUntil": "2026-11-06",
+  "intro": "Naar aanleiding van onze afspraak bij u aan huis sturen wij u hierbij de prijsopgave voor het buitenschilderwerk van uw woning. Het gaat om de kozijnen, ramen en boeidelen aan de voor- en achterzijde en om de voordeur. Het houtwerk is over het algemeen nog in redelijke staat, maar de kitvoegen langs het glas zijn op veel plaatsen gescheurd en onder een paar ramen zit beginnend houtrot. Wij schuren machinaal met stofafzuiging en lakken af in zijdeglans, in de kleur van uw keuze. De prijzen zijn inclusief materiaal en arbeid.",
+  "terms": "Deze offerte is 30 dagen geldig na de offertedatum. De prijzen per regel zijn exclusief btw, het totaalbedrag is inclusief 9% btw.\n\nDe houtrotreparaties zijn opgenomen als stelpost van 4 stuks. Komen wij tijdens het werk meer of minder houtrot tegen, dan overleggen wij eerst met u en verrekenen wij het werkelijke aantal tegen de prijs per stuk. Moet er een deel van een kozijn vervangen worden, dan krijgt u daar vooraf een aparte prijs voor.\n\nBuiten schilderen wij alleen bij geschikt weer. Bij regen of vorst schuift de planning in overleg op. Betaling binnen 14 dagen na oplevering. Op al onze werkzaamheden zijn onze algemene leveringsvoorwaarden van toepassing. U kunt deze downloaden op www.acs-schilderwerken.nl.\n\nOpdrachtgever verklaart dat de woning ouder is dan 2 jaar en door een particulier wordt bewoond, zodat het 9%-btw-tarief van toepassing is.",
+  "vatRate": 9,
+  "discountEnabled": false,
+  "discountType": "percent",
+  "discountValue": 0,
+  "items": [
+    {
+      "id": "r1",
+      "description": "Voorbereiden kozijnen, ramen en boeidelen: reinigen, ontvetten en machinaal schuren met stofafzuiging",
+      "qty": 78,
+      "unit": "m¹",
+      "price": 6
+    },
+    {
+      "id": "r2",
+      "description": "Oude kitvoegen tussen glas en houtwerk verwijderen en opnieuw afkitten, incl. kit",
+      "qty": 46,
+      "unit": "m¹",
+      "price": 8.5
+    },
+    {
+      "id": "r3",
+      "description": "Stelpost kleine houtrotreparaties met epoxy (uitfrezen, vullen en schuren). Werkelijke aantal wordt na overleg verrekend",
+      "qty": 4,
+      "unit": "stuks",
+      "price": 55
+    },
+    {
+      "id": "r4",
+      "description": "Bijwerken en gronden van kale plekken, incl. grondverf",
+      "qty": 1,
+      "unit": "post",
+      "price": 145
+    },
+    {
+      "id": "r5",
+      "description": "Kozijnen, ramen en boeidelen aflakken in zijdeglans (2 lagen), inclusief verf",
+      "qty": 78,
+      "unit": "m¹",
+      "price": 11.5
+    },
+    {
+      "id": "r6",
+      "description": "Voordeur met kozijn, buitenzijde: schuren, gronden waar nodig en twee lagen aflak in zijdeglans",
+      "qty": 1,
+      "unit": "stuks",
+      "price": 195
+    },
+    {
+      "id": "r7",
+      "description": "Ladder- en steigerwerk, incl. rolsteiger voor de boeidelen",
+      "qty": 1,
+      "unit": "post",
+      "price": 165
+    }
+  ],
+  "company": {
+    "name": "ACS Ad Chatrer Schilderwerken",
+    "logo": null,
+    "address": "Spechtstraat 10\n5735 EL Aarle-Rixtel",
+    "kvk": "",
+    "vat": "",
+    "phone": "0492 38 32 33 / 06 28 42 24 28",
+    "email": "acs@onsmail.nl",
+    "iban": ""
+  },
+  "customer": {
+    "name": "Voorbeeldklant",
+    "address": "Voorbeeldstraat 1\nAarle-Rixtel",
+    "jobAddress": "",
+    "sameAddress": true,
+    "phone": "",
+    "email": ""
+  }
+}
