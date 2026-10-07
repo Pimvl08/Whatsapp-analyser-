@@ -1,0 +1,74 @@
+{
+  "id": "demo-de-jongh-001",
+  "number": "DEMO-001",
+  "date": "2026-10-07",
+  "validUntil": "2026-11-06",
+  "intro": "Bedankt voor uw aanvraag en voor de tijd tijdens de dakinspectie. Zoals besproken is de bitumen dakbedekking op de garage versleten en aan vervanging toe. Hieronder vindt u onze prijsopgave voor het vervangen van het platte dak van circa 24 m² door een nieuwe EPDM-dakbedekking met isolatie. De prijzen zijn inclusief materiaal en arbeid. Heeft u nog vragen, dan kunt u ons altijd bellen.",
+  "terms": "Deze offerte is 30 dagen geldig na de offertedatum. De prijzen per regel zijn exclusief btw, het totaalbedrag is inclusief 21% btw.\n\nKomt na het verwijderen van de oude dakbedekking rot hout of ander verborgen gebrek aan het licht, dan overleggen wij eerst met u voordat wij verder gaan. Dit meerwerk wordt apart berekend.\n\nBetaling binnen 14 dagen na oplevering. Op al onze werkzaamheden zijn onze algemene voorwaarden van toepassing.",
+  "vatRate": 21,
+  "discountEnabled": false,
+  "discountType": "percent",
+  "discountValue": 0,
+  "items": [
+    {
+      "id": "r1",
+      "description": "Verwijderen en afvoeren bestaande bitumen dakbedekking, incl. container en stortkosten",
+      "qty": 24,
+      "unit": "m²",
+      "price": 14.5
+    },
+    {
+      "id": "r2",
+      "description": "Leveren en aanbrengen PIR-isolatie 100 mm (Rc 4,5) incl. dampremmende laag",
+      "qty": 24,
+      "unit": "m²",
+      "price": 39.5
+    },
+    {
+      "id": "r3",
+      "description": "Leveren en aanbrengen EPDM-dakbedekking 1,2 mm, volledig verlijmd, incl. opstand tegen de gevel",
+      "qty": 24,
+      "unit": "m²",
+      "price": 47.5
+    },
+    {
+      "id": "r4",
+      "description": "Leveren en monteren aluminium daktrim incl. hoekstukken",
+      "qty": 14,
+      "unit": "m¹",
+      "price": 27.5
+    },
+    {
+      "id": "r5",
+      "description": "Vervangen hemelwaterafvoer (onderuitloop en regenpijp)",
+      "qty": 1,
+      "unit": "post",
+      "price": 165
+    },
+    {
+      "id": "r6",
+      "description": "Voorrijkosten",
+      "qty": 1,
+      "unit": "post",
+      "price": 45
+    }
+  ],
+  "company": {
+    "name": "De Jongh Dak en Bouwservice",
+    "logo": null,
+    "address": "Duizeldonksestraat 1B\n5705 CA Helmond",
+    "kvk": "",
+    "vat": "",
+    "phone": "06 43 43 91 75",
+    "email": "info@dejonghdakenbouw.nl",
+    "iban": ""
+  },
+  "customer": {
+    "name": "Voorbeeldklant",
+    "address": "Voorbeeldstraat 1\nHelmond",
+    "jobAddress": "",
+    "sameAddress": true,
+    "phone": "",
+    "email": ""
+  }
+}
