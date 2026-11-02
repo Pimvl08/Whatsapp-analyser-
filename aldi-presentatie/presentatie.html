@@ -1,0 +1,1080 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My part-time job at ALDI – Pim van Leeuwen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700;800&family=Barlow+Condensed:wght@600;700;800&family=IBM+Plex+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   ALDI-stijl presentatie – Pim van Leeuwen – Engels A2
+   Werkt offline (lettertypes vallen dan terug op Arial).
+   ========================================================= */
+:root{
+  --navy:#001e78; --navy-2:#0a2f95; --navy-3:#00145a;
+  --blue:#00b4dc; --blue-soft:#e3f6fb;
+  --red:#c80000;
+  --ink:#0a1a4f; --muted:#5a6a93; --mist:#eef4fb; --line:#d6e2f0;
+  --ok:#1a9e4b;
+  --e:cubic-bezier(.2,.8,.2,1);
+  --cond:"Barlow Condensed","Arial Narrow","Roboto Condensed",Arial,sans-serif;
+  --sans:"Barlow","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:"IBM Plex Mono","Courier New",monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#000a2e;overflow:hidden;font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased}
+body.idle{cursor:none}
+#deck{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;overflow:hidden;background:#fff}
+.slide{position:absolute;inset:0;visibility:hidden;overflow:hidden;background:#fff}
+.slide.active{visibility:visible}
+.slide.dark{background:var(--navy);color:#fff}
+svg.ic{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;display:block}
+
+/* ---------- entrance animations (start when a slide gets .go) ---------- */
+@keyframes up{from{opacity:0;transform:translateY(46px)}to{opacity:1;transform:none}}
+@keyframes left{from{opacity:0;transform:translateX(-70px)}to{opacity:1;transform:none}}
+@keyframes right{from{opacity:0;transform:translateX(70px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{opacity:0;transform:scale(.55)}65%{opacity:1;transform:scale(1.07)}100%{opacity:1;transform:scale(1)}}
+@keyframes drop{0%{opacity:0;transform:translateY(-140px)}55%{opacity:1;transform:translateY(10px)}75%{transform:translateY(-4px)}100%{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes swing{0%{transform:rotate(10deg)}22%{transform:rotate(-7deg)}44%{transform:rotate(4deg)}66%{transform:rotate(-2deg)}85%{transform:rotate(.8deg)}100%{transform:rotate(0)}}
+@keyframes print{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 -40px 0)}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+@keyframes pulse{0%{transform:scale(.4);opacity:.7}100%{transform:scale(2.4);opacity:0}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.slide .a{opacity:0}
+.slide.go .a{animation:up .8s var(--e) both;animation-delay:calc(var(--d,0) * 1ms + 140ms)}
+.slide.go .a.l{animation-name:left}
+.slide.go .a.r{animation-name:right}
+.slide.go .a.pop{animation-name:pop;animation-duration:.7s}
+.slide.go .a.drop{animation-name:drop;animation-duration:1s}
+.slide.go .a.fade{animation-name:fade}
+
+/* ---------- shared light-slide chrome ---------- */
+.hdr{position:absolute;left:96px;top:58px;display:flex;align-items:center;gap:22px}
+.hdr svg{width:58px;height:61px;display:block;filter:drop-shadow(0 4px 10px rgba(0,30,120,.18))}
+.kicker{font:700 24px/1 var(--sans);letter-spacing:.17em;text-transform:uppercase;color:var(--blue)}
+.ttl{position:absolute;left:96px;top:138px;margin:0;font:800 112px/1 var(--cond);color:var(--navy);letter-spacing:-.5px;white-space:nowrap}
+.ttl em{font-style:normal;color:var(--blue)}
+.wm{position:absolute;right:-90px;bottom:30px;width:560px;height:588px;opacity:.06;pointer-events:none}
+.shelf{position:absolute;left:0;right:0;bottom:0;height:62px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 96px;font:600 22px/1 var(--sans);letter-spacing:.02em;z-index:5}
+.shelf::before{content:"";position:absolute;left:0;right:0;top:-9px;height:9px;background:var(--blue)}
+.shelf i{font-style:normal;color:var(--blue);padding:0 10px}
+.shelf .no{font:800 26px/1 var(--cond);background:#fff;color:var(--navy);padding:7px 16px 6px;border-radius:6px;letter-spacing:.06em}
+/* hanging aisle sign = which point of the assignment */
+.aisle{position:absolute;right:110px;top:0;width:186px;transform-origin:50% 0;z-index:4}
+.aisle::before,.aisle::after{content:"";position:absolute;top:0;width:4px;height:66px;background:#a9b8d3}
+.aisle::before{left:42px}.aisle::after{right:42px}
+.aisle .plate{margin-top:66px;background:var(--navy);color:#fff;border-radius:14px;padding:14px 0 16px;text-align:center;box-shadow:0 16px 34px rgba(0,30,120,.28);border-bottom:9px solid var(--blue)}
+.aisle small{display:block;font:700 19px/1 var(--sans);letter-spacing:.26em;opacity:.85}
+.aisle b{display:block;font:800 92px/.92 var(--cond)}
+.aisle span{display:block;font:600 17px/1 var(--sans);letter-spacing:.12em;color:var(--blue);margin-top:2px}
+.slide.go .aisle{animation:swing 2.4s ease-out .15s both}
+
+/* ---------- SLIDE 0 · title ---------- */
+.s-title .bands{position:absolute;top:-90px;bottom:-90px;left:1050px;width:1400px;display:flex;transform:skewX(-24deg)}
+.s-title .bands i{display:block;height:100%}
+.s-title .bands i:nth-child(1){width:120px;background:var(--navy-2)}
+.s-title .bands i:nth-child(2){width:46px;background:var(--blue)}
+.s-title .bands i:nth-child(3){width:150px;background:#0b3bb3}
+.s-title .bands i:nth-child(4){width:1100px;background:var(--blue)}
+.slide.go.s-title .bands i{animation:right 1s var(--e) both}
+.slide.go.s-title .bands i:nth-child(2){animation-delay:.08s}
+.slide.go.s-title .bands i:nth-child(3){animation-delay:.16s}
+.slide.go.s-title .bands i:nth-child(4){animation-delay:.24s}
+.s-title .stripes-bg{position:absolute;left:-200px;top:-100px;width:900px;height:900px;opacity:.07}
+.s-title .txt{position:absolute;left:120px;top:250px;width:980px}
+.s-title .kicker{font-size:28px;color:var(--blue)}
+.s-title h1{margin:26px 0 34px;font:800 128px/.95 var(--cond);letter-spacing:-.5px;color:#fff}
+.s-title h1 span{color:var(--blue)}
+.s-title .who{display:flex;align-items:center;gap:22px;font:600 38px/1.2 var(--sans)}
+.s-title .who .ic{width:58px;height:58px;padding:12px;border-radius:50%;background:rgba(255,255,255,.12);stroke-width:1.8}
+.s-title .who small{display:block;font:600 26px/1.2 var(--sans);color:#9fdcf0}
+.s-title .logo-box{position:absolute;left:1290px;top:225px;width:440px;height:462px;filter:drop-shadow(0 34px 60px rgba(0,10,60,.45))}
+.s-title .floor{position:absolute;left:0;right:0;top:992px;height:5px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.28) 0 34px,transparent 34px 56px)}
+.s-title .cart{position:absolute;left:0;top:798px;width:250px;height:192px;transform:translateX(-340px)}
+.slide.go.s-title .cart{animation:roll 2.8s cubic-bezier(.25,.9,.3,1) .7s both}
+@keyframes roll{from{transform:translateX(-340px)}to{transform:translateX(760px)}}
+.s-title .cart .spin{transform-box:fill-box;transform-origin:center}
+.slide.go.s-title .cart .spin{animation:spin .5s linear 5 .7s}
+/* logo build */
+.build-logo path{transform-box:fill-box;transform-origin:center}
+.slide.go .build-logo .lb{animation:pop .7s var(--e) both .25s}
+.slide.go .build-logo .ls{animation:up .7s var(--e) both;animation-delay:calc(var(--d) * 1ms + 450ms)}
+.slide.go .build-logo .lband{animation:left .7s var(--e) both 1.05s}
+.slide.go .build-logo .lt{animation:fade .6s ease both 1.35s}
+.build-logo .lb,.build-logo .ls,.build-logo .lband,.build-logo .lt{opacity:0}
+.slide.go .build-logo .lb,.slide.go .build-logo .ls,.slide.go .build-logo .lband,.slide.go .build-logo .lt{opacity:1}
+
+/* ---------- SLIDE 1 · about me ---------- */
+.facts{position:absolute;left:96px;top:330px;margin:0;padding:0;list-style:none;display:grid;gap:30px}
+.facts li{display:flex;align-items:center;gap:30px}
+.facts .ico{width:118px;height:118px;border-radius:28px;background:var(--mist);color:var(--navy);display:grid;place-items:center;flex:none;border:3px solid var(--line)}
+.facts .ico .ic{width:62px;height:62px;stroke-width:1.8}
+.facts b{display:block;font:800 66px/1 var(--cond);color:var(--navy)}
+.facts small{display:block;font:600 27px/1.25 var(--sans);color:var(--muted);margin-top:6px}
+.badge-wrap{position:absolute;left:1060px;top:0;width:440px;height:860px;transform-origin:50% 0}
+.slide.go .badge-wrap .badge-swing{animation:swing 2.6s ease-out 1s both;transform-origin:50% -300px}
+.lanyard{position:absolute;left:50%;top:0;width:180px;height:252px;transform:translateX(-50%)}
+.lanyard::before,.lanyard::after{content:"";position:absolute;top:-20px;width:34px;height:290px;background:linear-gradient(var(--navy),var(--navy-2));border-radius:4px}
+.lanyard::before{left:6px;transform:rotate(-13deg);transform-origin:top}
+.lanyard::after{right:6px;transform:rotate(13deg);transform-origin:top}
+.badge{position:absolute;left:0;top:250px;width:440px;height:590px;background:#fff;border-radius:26px;box-shadow:0 30px 70px rgba(0,30,120,.28),0 0 0 3px var(--line) inset;overflow:hidden}
+.badge .clip{position:absolute;left:50%;top:-24px;width:96px;height:56px;margin-left:-48px;border-radius:12px;background:#c9d4e6;border:6px solid #aebbd2;z-index:2}
+.badge .bh{height:170px;background:var(--navy);display:grid;place-items:center}
+.badge .bh svg{width:104px;height:109px}
+.badge .bb{padding:36px 40px 0;text-align:center}
+.badge .bb small{display:block;font:600 30px/1 var(--sans);color:var(--muted)}
+.badge .bb b{display:block;font:800 168px/1 var(--cond);color:var(--navy);margin:10px 0 14px}
+.badge .bb span{display:inline-block;font:700 29px/1 var(--sans);color:#fff;background:var(--blue);padding:13px 24px;border-radius:40px}
+.badge .bs{position:absolute;left:0;right:0;bottom:0;height:56px;background:repeating-linear-gradient(-56deg,var(--navy) 0 26px,var(--blue) 26px 38px,var(--navy) 38px 56px,#fff 56px 62px)}
+
+/* ---------- SLIDE 2 · shopping list (agenda) ---------- */
+.steps{position:absolute;left:96px;top:360px;display:grid;gap:30px;width:900px}
+.step{display:flex;align-items:center;gap:28px;padding:26px 32px;border-radius:22px;background:var(--mist);border:3px solid var(--line)}
+.step b{flex:none;min-width:210px;font:800 52px/1 var(--cond);color:#fff;background:var(--navy);padding:14px 20px 12px;border-radius:12px;text-align:center;letter-spacing:.04em}
+.step:nth-child(2) b{background:var(--blue)}
+.step:nth-child(3) b{background:var(--red)}
+.step span{font:700 40px/1.15 var(--sans);color:var(--navy)}
+.receipt-wrap{position:absolute;left:1190px;top:96px;width:560px}
+.slot{height:30px;border-radius:15px;background:#20304f;box-shadow:inset 0 6px 10px rgba(0,0,0,.45);margin:0 -24px}
+.receipt{position:relative;margin-top:-14px;background:#fff;padding:40px 44px 34px;font:500 25px/1.5 var(--mono);color:#1c2333;clip-path:inset(0 0 -40px 0)}
+.receipt-wrap{filter:drop-shadow(0 24px 34px rgba(0,20,90,.25))}
+.slide.go .receipt{animation:print 1.8s steps(18,end) .3s both}
+.receipt::after{content:"";position:absolute;left:0;right:0;bottom:-14px;height:14px;background:conic-gradient(from 135deg at 50% 0,#fff 90deg,transparent 0) 0 0/28px 14px repeat-x}
+.receipt .rh{text-align:center}
+.receipt .rh svg{width:84px;height:88px;margin:0 auto 10px;display:block}
+.receipt .rh b{display:block;font-weight:700;font-size:27px}
+.receipt hr{border:0;border-top:3px dashed #9aa4b8;margin:16px 0}
+.receipt .row{display:flex;justify-content:space-between;gap:16px;white-space:nowrap}
+.receipt .row span:first-child{overflow:hidden}
+.receipt .row em{font-style:normal;color:var(--blue);font-weight:700;padding-right:12px}
+.receipt .tot{font-weight:700;font-size:30px}
+.receipt .bar{height:64px;margin:18px 8px 6px;background:repeating-linear-gradient(90deg,#111 0 3px,transparent 3px 7px,#111 7px 8px,transparent 8px 11px,#111 11px 16px,transparent 16px 19px,#111 19px 21px,transparent 21px 26px)}
+.receipt .thx{text-align:center;font-size:20px;color:#6b7590}
+.receipt .ok{color:var(--ok);font-weight:700}
+
+/* ---------- SLIDE 3 · where ---------- */
+.nl-sign{position:absolute;left:96px;top:330px;width:820px;padding:14px;border-radius:28px;background:#1f4fa3;box-shadow:0 26px 60px rgba(0,30,120,.28)}
+.nl-sign .in{border:7px solid #fff;border-radius:18px;padding:36px 20px 26px;text-align:center;color:#fff}
+.nl-sign b{display:block;font:700 124px/1 var(--sans);letter-spacing:-1px}
+.nl-sign span{display:block;font:600 40px/1 var(--sans);margin-top:18px;opacity:.95}
+.chips{position:absolute;left:96px;top:690px;width:860px;display:flex;flex-wrap:wrap;gap:18px}
+.chip{display:flex;align-items:center;gap:14px;padding:16px 26px 16px 18px;border-radius:60px;background:var(--mist);border:3px solid var(--line);font:700 31px/1 var(--sans);color:var(--navy)}
+.chip .ic{width:40px;height:40px;color:var(--blue);stroke-width:2.2}
+.map{position:absolute;left:1010px;top:300px;width:810px;height:650px;border-radius:30px;background:#f3f8fd;border:3px solid var(--line);overflow:hidden;box-shadow:0 26px 60px rgba(0,30,120,.14)}
+.map svg.m{position:absolute;inset:0;width:100%;height:100%}
+.map .lbl{font:700 30px var(--sans);fill:var(--navy)}
+.map .lbl.sm{font:600 27px var(--sans);fill:#51628d}
+.map .big{font:800 40px var(--cond);fill:var(--navy)}
+.map .cap{position:absolute;left:28px;bottom:24px;font:700 22px/1 var(--sans);letter-spacing:.14em;color:#7a8bb3;text-transform:uppercase}
+.pin{position:absolute;left:418px;top:46px;width:120px;height:150px}
+.pin .body{position:absolute;inset:0}
+.slide.go .pin .body{animation:drop .9s var(--e) .9s both, bounce 1.6s ease-in-out 2.2s infinite}
+.pin .ring{position:absolute;left:35px;top:128px;width:50px;height:20px;border-radius:50%;background:rgba(0,180,220,.55)}
+.slide.go .pin .ring{animation:pulse 1.6s ease-out 1.8s infinite}
+.mytag{position:absolute;left:556px;top:72px;background:var(--red);color:#fff;font:800 30px/1 var(--cond);letter-spacing:.06em;padding:10px 16px 8px;border-radius:8px}
+
+/* ---------- SLIDE 4 · ALDI ---------- */
+.name{position:absolute;left:96px;top:288px;display:flex;align-items:baseline;gap:26px;font:800 84px/1 var(--cond);color:var(--navy)}
+.name small{font:700 30px/1 var(--sans);color:var(--muted);letter-spacing:.06em}
+.name mark{background:var(--blue);color:#fff;padding:0 10px;border-radius:8px}
+.name mark.r{background:var(--red)}
+.stats{position:absolute;left:96px;right:96px;top:440px;display:grid;grid-template-columns:repeat(4,1fr);gap:34px}
+.tag{position:relative;background:#fff;border:3px solid var(--line);border-radius:24px;padding:0 0 26px;text-align:center;box-shadow:0 18px 44px rgba(0,30,120,.12);overflow:hidden}
+.tag .th{background:var(--navy);color:#fff;font:700 22px/1 var(--sans);letter-spacing:.16em;padding:18px 10px 16px;text-transform:uppercase}
+.tag:nth-child(2) .th{background:var(--blue)}
+.tag:nth-child(3) .th{background:var(--red)}
+.tag:nth-child(4) .th{background:var(--navy-2)}
+.tag .n{font:800 118px/1 var(--cond);color:var(--navy);margin:22px 0 8px;font-variant-numeric:tabular-nums}
+.tag .c{font:600 28px/1.2 var(--sans);color:var(--muted)}
+.tag .flag{position:absolute;right:20px;bottom:20px;width:48px;height:31px;border-radius:4px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.feat{position:absolute;left:96px;right:96px;top:790px;display:flex;gap:22px;flex-wrap:wrap}
+.feat .chip{font-size:32px}
+
+/* ---------- SLIDE 5 · when ---------- */
+.year{position:absolute;left:96px;top:270px;display:flex;align-items:flex-end;gap:30px}
+.year b{font:800 300px/.82 var(--cond);color:var(--navy);letter-spacing:-6px}
+.year span{font:800 92px/1 var(--cond);color:var(--blue);padding-bottom:10px}
+.since{position:absolute;left:1010px;top:300px;width:700px;transform-origin:50% 0}
+.since .card{background:var(--red);color:#fff;border-radius:22px;padding:30px 40px 34px;box-shadow:0 22px 50px rgba(200,0,0,.28);transform:rotate(-3deg)}
+.since small{display:block;font:700 26px/1 var(--sans);letter-spacing:.18em;opacity:.9}
+.since b{display:block;font:800 92px/1 var(--cond);margin-top:12px}
+.tl{position:absolute;left:150px;right:150px;top:730px;height:120px}
+.tl .track{position:absolute;left:0;right:0;top:52px;height:16px;border-radius:8px;background:var(--mist);border:2px solid var(--line)}
+.tl .fill{position:absolute;left:0;right:0;top:52px;height:16px;border-radius:8px;background:linear-gradient(90deg,var(--blue),var(--navy));transform-origin:left;transform:scaleX(0)}
+.slide.go .tl .fill{animation:grow 2.4s cubic-bezier(.5,0,.2,1) .8s both}
+.tl .tick{position:absolute;top:44px;width:4px;height:32px;margin-left:-2px;background:#b9c8de;border-radius:2px}
+.tl .m{position:absolute;top:96px;transform:translateX(-50%);font:700 22px/1 var(--sans);color:var(--muted);letter-spacing:.06em}
+.tl .end{position:absolute;top:-68px;transform:translateX(-50%);font:800 32px/1 var(--cond);letter-spacing:.06em;color:#fff;background:var(--navy);padding:10px 16px 8px;border-radius:8px;white-space:nowrap}
+.tl .end.s{background:var(--blue)}
+.tl .tcart{position:absolute;top:-6px;left:0;width:76px;height:58px;margin-left:-38px;color:var(--navy)}
+.slide.go .tl .tcart{animation:ride 2.4s cubic-bezier(.5,0,.2,1) .8s both}
+@keyframes ride{from{left:0}to{left:100%}}
+.tl .tcart .ic{width:76px;height:58px;stroke-width:2.2}
+
+/* ---------- SLIDE 6 · days ---------- */
+.week{position:absolute;left:96px;right:96px;top:310px;display:grid;grid-template-columns:repeat(7,1fr);gap:22px}
+.day{position:relative;height:250px;border-radius:24px;background:var(--mist);border:3px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#93a3c4}
+.day b{font:800 74px/1 var(--cond);letter-spacing:.02em}
+.day small{font:600 25px/1 var(--sans);margin-top:10px}
+.day.on{background:var(--navy);border-color:var(--navy);color:#fff;box-shadow:0 20px 44px rgba(0,30,120,.3)}
+.day.on small{color:var(--blue)}
+.day .tick{position:absolute;right:-12px;top:-12px;width:54px;height:54px;border-radius:50%;background:var(--blue);display:grid;place-items:center;color:#fff;border:4px solid #fff}
+.day .tick .ic{width:28px;height:28px;stroke-width:3.4}
+.day .busy{position:absolute;left:50%;bottom:-22px;transform:translateX(-50%) rotate(-3deg);background:var(--red);color:#fff;font:800 25px/1 var(--cond);letter-spacing:.08em;padding:9px 14px 7px;border-radius:7px;white-space:nowrap}
+.dsum{position:absolute;left:96px;top:640px;display:flex;align-items:center;gap:30px}
+.dsum b{font:800 170px/.9 var(--cond);color:var(--navy)}
+.dsum span{font:700 46px/1.1 var(--sans);color:var(--navy)}
+.dsum span small{display:block;font:600 30px/1.2 var(--sans);color:var(--muted)}
+.dchips{position:absolute;left:1000px;top:650px;display:grid;gap:20px}
+.dchips .chip{font-size:31px}
+
+/* ---------- SLIDE 7 · role ---------- */
+.claim{position:absolute;left:96px;top:300px;width:1728px;display:flex;align-items:center;gap:40px;background:var(--navy);color:#fff;border-radius:30px;padding:40px 50px;box-shadow:0 26px 60px rgba(0,30,120,.28);overflow:hidden}
+.claim::after{content:"";position:absolute;right:-60px;top:-40px;bottom:-40px;width:330px;background:repeating-linear-gradient(90deg,var(--blue) 0 40px,transparent 40px 70px,var(--navy-2) 70px 130px,transparent 130px 150px);transform:skewX(-24deg);opacity:.9}
+.claim .k{flex:none;width:150px;height:150px;border-radius:50%;background:var(--blue);display:grid;place-items:center}
+.claim .k .ic{width:84px;height:84px;stroke-width:1.9}
+.claim p{margin:0;font:700 56px/1.15 var(--sans);position:relative;z-index:1}
+.claim p small{display:block;font:700 34px/1.2 var(--sans);color:#9fdcf0;margin-bottom:8px}
+.resp{position:absolute;left:96px;top:590px;font:700 34px/1 var(--sans);color:var(--muted);letter-spacing:.02em}
+.three{position:absolute;left:96px;right:96px;top:650px;display:grid;grid-template-columns:repeat(3,1fr);gap:34px}
+.three .t{display:flex;align-items:center;gap:26px;padding:30px 34px;border-radius:24px;background:var(--mist);border:3px solid var(--line)}
+.three .t .ic{width:84px;height:84px;color:var(--navy);flex:none;stroke-width:1.8}
+.three .t b{font:800 62px/1 var(--cond);color:var(--navy)}
+.four{position:absolute;right:96px;top:880px;font:800 44px/1 var(--cond);color:#fff;background:var(--red);padding:14px 26px 12px;border-radius:12px;letter-spacing:.04em}
+
+/* ---------- SLIDES 8 + 9 · tasks ---------- */
+.tasks{position:absolute;left:96px;right:96px;top:296px;display:grid;grid-template-columns:1fr 1fr;gap:44px}
+.task{position:relative;background:#fff;border-radius:30px;border:3px solid var(--line);box-shadow:0 22px 54px rgba(0,30,120,.13);padding:44px 46px 70px;min-height:660px;overflow:hidden}
+.task::after{content:"";position:absolute;left:0;right:0;bottom:0;height:26px;background:repeating-linear-gradient(-56deg,var(--navy) 0 30px,var(--blue) 30px 42px,var(--navy) 42px 64px,#fff 64px 70px)}
+.task .top{display:flex;align-items:center;gap:28px;margin-bottom:36px}
+.task .ti{position:relative;flex:none;width:132px;height:132px;border-radius:30px;background:var(--navy);display:grid;place-items:center;color:#fff}
+.task .ti .ic{width:74px;height:74px;stroke-width:1.8}
+.task .num{position:absolute;left:-14px;top:-14px;width:56px;height:56px;border-radius:50%;background:var(--blue);color:#fff;font:800 36px/56px var(--cond);text-align:center;border:4px solid #fff}
+.task h3{margin:0;font:800 60px/1 var(--cond);color:var(--navy)}
+.task .lab{display:inline-block;font:700 21px/1 var(--sans);letter-spacing:.2em;color:var(--muted);margin:0 0 14px}
+.task ul{margin:0 0 38px;padding:0;list-style:none;display:grid;gap:18px}
+.task li{position:relative;padding-left:42px;font:600 37px/1.25 var(--sans);color:var(--ink)}
+.task li::before{content:"";position:absolute;left:4px;top:16px;width:16px;height:16px;border-radius:4px;background:var(--blue);transform:rotate(45deg)}
+.task .how{background:var(--blue-soft);border-left:10px solid var(--blue);border-radius:16px;padding:26px 30px}
+.task .how .lab{color:#0089a8;margin-bottom:10px}
+.task .how p{margin:0;display:flex;align-items:center;gap:16px;font:800 46px/1.12 var(--cond);color:var(--navy)}
+.task .how p .ic{width:44px;height:44px;flex:none;color:var(--ok);stroke-width:2.8}
+
+/* ---------- SLIDE 10 · opinion ---------- */
+.ops{position:absolute;left:96px;top:300px;width:1120px;display:grid;gap:28px}
+.op{display:flex;align-items:center;gap:30px;padding:28px 34px;border-radius:26px;background:var(--mist);border:3px solid var(--line)}
+.op .sg{flex:none;width:96px;height:96px;border-radius:50%;display:grid;place-items:center;color:#fff;font:800 76px/1 var(--cond);background:var(--ok)}
+.op.min .sg{background:var(--red)}
+.op .ic{width:64px;height:64px;color:var(--navy);flex:none;stroke-width:1.8}
+.op b{display:block;font:800 58px/1 var(--cond);color:var(--navy)}
+.op small{display:block;font:600 30px/1.25 var(--sans);color:var(--muted);margin-top:8px}
+.hang{position:absolute;left:1370px;top:0;width:360px;height:860px;transform-origin:50% 0}
+.slide.go .hang{animation:swing 3s ease-out .9s both}
+.hang .str{position:absolute;left:50%;top:0;width:4px;height:250px;margin-left:-2px;background:#9aaccc}
+.ptag{position:absolute;left:0;top:230px;width:360px;height:520px;background:var(--red);color:#fff;text-align:center;clip-path:polygon(50% 0,100% 15%,100% 100%,0 100%,0 15%);border-radius:0 0 24px 24px;padding-top:110px;filter:drop-shadow(0 20px 40px rgba(200,0,0,.3))}
+.ptag::before{content:"";position:absolute;left:50%;top:34px;width:40px;height:40px;margin-left:-20px;border-radius:50%;background:#fff;box-shadow:inset 0 4px 6px rgba(0,0,0,.25)}
+.ptag small{display:block;font:700 28px/1 var(--sans);letter-spacing:.22em}
+.ptag b{display:block;font:800 250px/.95 var(--cond);margin-top:14px}
+.ptag b sup{font-size:80px;vertical-align:top;position:relative;top:34px;margin-left:4px}
+.ptag span{display:block;font:700 32px/1.2 var(--sans);padding:0 30px}
+.allin{position:absolute;left:96px;top:880px;font:800 54px/1 var(--cond);color:var(--navy)}
+.allin em{font-style:normal;color:var(--red)}
+
+/* ---------- SLIDE 11 · end ---------- */
+.s-end .bands{position:absolute;top:-90px;bottom:-90px;left:-500px;width:1100px;display:flex;transform:skewX(-24deg);opacity:.22}
+.s-end .bands i{display:block;height:100%}
+.s-end .bands i:nth-child(1){width:300px;background:var(--navy-2)}
+.s-end .bands i:nth-child(2){width:60px;background:var(--blue)}
+.s-end .bands i:nth-child(3){width:140px;background:var(--navy-2)}
+.s-end .bands i:nth-child(4){width:40px;background:var(--blue)}
+.s-end .txt{position:absolute;left:120px;top:250px;width:980px}
+.s-end .mini{width:120px;height:126px;margin-bottom:40px;filter:drop-shadow(0 16px 30px rgba(0,0,40,.45))}
+.s-end h1{margin:0 0 30px;font:800 140px/.95 var(--cond);color:#fff}
+.s-end h2{margin:0;display:inline-flex;align-items:center;gap:24px;font:800 86px/1 var(--cond);color:var(--navy);background:var(--blue);padding:18px 34px 14px;border-radius:18px}
+.s-end h2 .ic{width:70px;height:70px;stroke-width:2.2}
+.s-end .receipt-wrap{left:1220px;top:70px;width:540px}
+.s-end .receipt{font-size:24px}
+.confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+.s-end .txt,.s-end .receipt-wrap{z-index:2}
+.confetti i{position:absolute;top:-40px;width:16px;height:34px;border-radius:3px;animation:fall linear both}
+@keyframes fall{to{transform:translateY(1200px) rotate(720deg)}}
+
+/* ---------- wipe transition (ALDI stripes) ---------- */
+#wipe{position:fixed;inset:0;pointer-events:none;z-index:50;overflow:hidden}
+#wipe .bands{position:absolute;top:0;bottom:0;left:calc(-30vh - 6vw);right:calc(-30vh - 6vw);display:flex}
+#wipe .band{height:100%;transform:skewX(-24deg);margin-right:-3px;overflow:hidden}
+#wipe .band i{display:block;width:100%;height:100%;transform:scaleX(0);transform-origin:left center}
+#wipe .wlogo{position:absolute;left:50%;top:50%;width:min(24vw,40vh);aspect-ratio:283.5/297.6;opacity:0;transform:translate(-50%,-50%);filter:drop-shadow(0 30px 60px rgba(0,0,40,.5))}
+#wipe .wlogo svg{width:100%;height:100%;display:block}
+
+/* ---------- UI: progress, hint, notes, overview, help ---------- */
+#progress{position:fixed;left:0;bottom:0;height:5px;width:0;background:var(--blue);z-index:40;transition:width .6s var(--e)}
+#hint{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:60;background:rgba(0,20,90,.92);color:#fff;font:600 15px/1.4 var(--sans);padding:12px 20px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.35);transition:opacity .6s;max-width:calc(100vw - 32px);text-align:center}
+#hint b{color:var(--blue)}
+#hint.hide{opacity:0;pointer-events:none}
+.ov{position:fixed;z-index:70;display:none}
+.ov.show{display:block}
+#notes{left:0;right:0;bottom:0;max-height:46vh;overflow:auto;background:rgba(255,255,255,.98);border-top:6px solid var(--blue);box-shadow:0 -14px 40px rgba(0,0,0,.35);padding:16px clamp(16px,3vw,40px) 22px;font-family:var(--sans);color:var(--ink)}
+#notes .nm{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between;margin-bottom:8px}
+#notes .nm .l{font:700 14px/1.3 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+#notes .nm .l b{color:var(--navy)}
+.tm{display:inline-flex;align-items:center;gap:10px;font:700 15px/1 var(--sans)}
+.tm .clock{font:800 26px/1 var(--cond);color:#fff;background:var(--navy);padding:6px 12px 5px;border-radius:8px;font-variant-numeric:tabular-nums}
+.tm .st{padding:6px 10px;border-radius:8px;color:#fff}
+#notes .en p{margin:6px 0;font:600 clamp(17px,1.7vw,24px)/1.45 var(--sans);color:var(--navy)}
+#notes .nl p{margin:4px 0;font:500 clamp(14px,1.25vw,17px)/1.45 var(--sans);color:#5d6b8f;font-style:italic}
+#notes .xt{margin-top:8px;font:600 15px/1.4 var(--sans);color:#0089a8}
+#notes .tp{margin-top:8px;font:600 15px/1.4 var(--sans);color:#9a5b00}
+#notes .warn{margin-top:10px;font:700 13px/1.3 var(--sans);color:var(--red)}
+#overview,#help{inset:0;background:rgba(0,10,46,.94);overflow:auto;padding:clamp(16px,4vw,60px)}
+#overview h3,#help h3{color:#fff;font:800 40px/1 var(--cond);margin:0 0 20px}
+#overview .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+#overview button{all:unset;cursor:pointer;background:#fff;border-radius:14px;padding:16px 18px;font:700 18px/1.25 var(--sans);color:var(--navy);border:4px solid transparent}
+#overview button small{display:block;font:800 30px/1 var(--cond);color:var(--blue);margin-bottom:6px}
+#overview button.cur{border-color:var(--blue)}
+#help .box{background:#fff;border-radius:18px;padding:24px 28px;max-width:760px;font:500 17px/1.5 var(--sans);color:var(--ink)}
+#help table{border-collapse:collapse;width:100%}
+#help td{padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+#help kbd{display:inline-block;min-width:28px;text-align:center;font:700 14px/1 var(--mono);background:var(--mist);border:2px solid var(--line);border-bottom-width:4px;border-radius:7px;padding:5px 7px;margin:1px}
+#help .warn{margin-top:14px;padding:12px 16px;border-radius:12px;background:#fdecec;color:#8a0000;font-weight:700}
+
+@media (prefers-reduced-motion: reduce){
+  .slide .a,.build-logo *{opacity:1!important;animation:none!important}
+  .receipt{animation:none!important;clip-path:none!important}
+  .tl .fill{transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ SVG: ALDI logo + icons ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <!-- ALDI Nord logo (vector, from Wikimedia Commons) -->
+  <symbol id="aldi" viewBox="0 0 283.5 297.6">
+    <path fill="#fff" d="M 272.1,286.3 H 11.3 v -275 h 260.8 z"/>
+    <path fill="#c80000" d="M 283.5,297.6 283.5,0 0,0 l 0,297.6 283.5,0 0,0 z m -11.4,-11.3 -260.8,0 0,-275 260.8,0 0,275 0,0 z"/>
+    <polygon fill="#001e78" points="258,212.6 258,272.1 25.5,272.1 25.5,212.6"/>
+    <path fill="#fff" d="m 236.7,265 0,-45.4 -20.4,0 0,45.4 20.4,0 0,0 z m -25,-22.6 c 0,-12.5 -10.1,-22.7 -22.5,-22.7 l -30.1,0 0,45.3 30.1,0 c 12.4,0 22.5,-10.1 22.5,-22.6 l 0,0 z m -18.7,0 c 0,5.4 -4.1,9.9 -9.2,9.9 l -4.4,0 0,-19.7 4.4,0 c 5.1,-0.1 9.2,4.3 9.2,9.8 l 0,0 z m -76.4,22.6 38.5,0 0,-13.1 -17.8,0 0,-32.3 -20.7,0 0,45.4 0,0 z m -23.2,0 20.6,0 -23.2,-45.4 -20.8,0 -23.2,45.4 20.6,0 2.2,-4.8 21.7,0 2.1,4.8 0,0 z m -8.3,-16.7 -9.5,0 4.6,-10.1 4.9,10.1 0,0 z"/>
+    <use href="#aldi-a"/>
+  </symbol>
+  <!-- the striped "A" only -->
+  <symbol id="aldi-a" viewBox="0 0 283.5 297.6">
+    <path fill="#00b4dc" d="m 220.5,206.9 c 3.1,-5.8 4.8,-11.8 4.7,-18.6 -0.1,-7.6 -3.3,-12.5 -7.6,-19 l -63,-94.6 10.2,-15.5 70.1,104.8 c 5.8,8.6 9.1,15.1 9.3,24.7 0.1,5.6 -1.6,12.6 -4.2,18.1 l -19.5,0 0,0.1 z"/>
+    <path fill="#001e78" d="m 242.9,206.9 c 0.5,-1.1 0.8,-1.8 1.2,-2.8 1.5,-4 3.4,-9.5 3.2,-15.3 -0.2,-10.1 -3.7,-16.8 -9.6,-25.5 l -71.2,-106.4 8.2,-12.4 77.5,116.2 c 6.8,10.2 10,16.2 10,25.6 0,10.8 -2.9,15.6 -5.1,20.5 l -14.2,0 0,0.1 z"/>
+    <path fill="#001e78" d="m 199.4,206.9 c 4.2,-4.4 7.2,-11.5 6.8,-19 -0.3,-6.4 -4.3,-12.7 -8.9,-19.7 l -52.5,-78.7 8,-12.1 61.9,92.9 c 4.3,6.5 7.2,11 7.3,18.1 0.1,6.7 -1.6,12.7 -4.9,18.5 l -17.7,0 0,0 z"/>
+    <path fill="#001e78" d="M 120.8,25.5 31.3,160.8 c -6.8,10.2 -10,16.2 -10,25.6 0,10.8 2.9,15.6 5.1,20.5 l 14.3,0 c -0.4,-0.8 -0.8,-1.8 -1.2,-2.9 -1.5,-4 -3,-9.5 -2.9,-15.2 0.2,-10.1 3.7,-16.8 9.6,-25.5 l 91.5,-137.8 -16.9,0 0,0 z"/>
+    <path fill="#00b4dc" d="M 140.7,25.5 48.6,164.2 c -5.8,8.6 -9.1,15.1 -9.3,24.7 -0.1,5.6 1.6,12.6 4.2,18.1 l 19.5,0 c -3.1,-5.8 -4.8,-11.8 -4.7,-18.6 0.1,-7.6 3.3,-12.5 7.6,-19 l 95.2,-143.9 -20.4,0 0,0 z"/>
+    <path fill="#00b4dc" d="m 83.2,172.9 111.4,0 -7.6,-11.4 -96.3,0 -4.5,6.7 c -1,1.5 -2.1,3.2 -3,4.7 l 0,0 z"/>
+    <path fill="#001e78" d="M 164.2,25.5 68.4,170.3 c -4.3,6.5 -7.2,11 -7.3,18.1 -0.1,6.7 1.6,12.7 4.9,18.5 l 18.1,0 c -4.2,-4.4 -7.2,-11.5 -6.8,-19 0.1,-1.5 0.4,-3.5 0.8,-5 l 121.9,0 c -0.8,-2.4 -1.6,-4.4 -3.7,-7.2 l -114.8,0 c 1.3,-2.3 3.1,-5.1 4.7,-7.5 l 6.3,-9.4 92.7,0 -5.1,-7.6 -82.5,0 83.1,-125.6 -16.5,0 0,-0.1 z"/>
+  </symbol>
+  <!-- line icons -->
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></symbol>
+  <symbol id="i-cake" viewBox="0 0 24 24"><path d="M4 21v-8.5h16V21"/><path d="M2 21h20"/><path d="M4 16.5c2 1.4 4 1.4 6 0s4-1.4 6 0 3 1.4 4 .4"/><path d="M8 12.5V9.5M16 12.5V9.5M12 12.5V9.5"/><path d="M8 6.8c-.7-.7-.7-1.7 0-2.6.7.9.7 1.9 0 2.6zM12 6.8c-.7-.7-.7-1.7 0-2.6.7.9.7 1.9 0 2.6zM16 6.8c-.7-.7-.7-1.7 0-2.6.7.9.7 1.9 0 2.6z"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/><path d="M22 9v6"/></symbol>
+  <symbol id="i-store" viewBox="0 0 24 24"><path d="M4 10v10h16V10"/><path d="M2.5 10l2-6h15l2 6z"/><path d="M10 20v-5.5h4V20"/><path d="M2.5 10c0 1.4 1.1 2.5 2.5 2.5S7.5 11.4 7.5 10c0 1.4 1.1 2.5 2.5 2.5s2.5-1.1 2.5-2.5c0 1.4 1.1 2.5 2.5 2.5s2.5-1.1 2.5-2.5c0 1.4 1.1 2.5 2.5 2.5s2.5-1.1 2.5-2.5"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 22s7-6.6 7-12.5A7 7 0 0 0 5 9.5C5 15.4 12 22 12 22z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 9.5V20h14V9.5"/><path d="M10 20v-5h4v5"/></symbol>
+  <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4"/><path d="M5 4h12l-2 4 2 4H5"/></symbol>
+  <symbol id="i-road" viewBox="0 0 24 24"><path d="M8 3L4 21M16 3l4 18M12 4v3M12 10.5v3M12 17v3"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M10.7 12.3L20 3"/><path d="M16.5 6.5l3 3"/><path d="M14 9l2 2"/></symbol>
+  <symbol id="i-team" viewBox="0 0 24 24"><circle cx="12" cy="7.5" r="3"/><circle cx="5" cy="9.5" r="2.2"/><circle cx="19" cy="9.5" r="2.2"/><path d="M6.8 20v-1a5.2 5.2 0 0 1 10.4 0v1"/><path d="M1.5 19v-.5A3.5 3.5 0 0 1 5 15"/><path d="M22.5 19v-.5A3.5 3.5 0 0 0 19 15"/></symbol>
+  <symbol id="i-safe" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="16" rx="2"/><circle cx="12" cy="11" r="3.8"/><path d="M12 7.2v1.3M12 13.5v1.3M8.2 11h1.3M14.5 11h1.3"/><path d="M6 19v2M18 19v2"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M1.5 5h12.5v11H1.5z"/><path d="M14 9h4l4 4v3h-8z"/><circle cx="5.5" cy="18" r="2"/><circle cx="17.5" cy="18" r="2"/></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24"><path d="M2 3h3l2.6 12.2a1.2 1.2 0 0 0 1.2.9h9.4a1.2 1.2 0 0 0 1.2-.9L21 7H5.9"/><circle cx="9.5" cy="20" r="1.6"/><circle cx="17.5" cy="20" r="1.6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 12.5l5 5L20 7"/></symbol>
+  <symbol id="i-euro" viewBox="0 0 24 24"><path d="M18 6.6A7 7 0 1 0 18 17.4"/><path d="M4 10h10M4 14h10"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M3 7.5l9-4.5 9 4.5v9l-9 4.5-9-4.5z"/><path d="M3 7.5l9 4.5 9-4.5M12 12v9"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4.5 13.5H11L10 22l8.5-11.5H12z"/></symbol>
+  <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.7.6 1.1 1.3 1.1 2.2h5c0-.9.4-1.6 1.1-2.2A6 6 0 0 0 12 3z"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 12V4a1 1 0 0 1 1-1h8l9 9-9 9z"/><circle cx="7.8" cy="7.8" r="1.6"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.8l-5.4 2.9 1.1-6.1-4.5-4.2 6.1-.8z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M9.5 9.2a2.5 2.5 0 1 1 3.3 2.4c-.5.2-.8.6-.8 1.1v.4"/><path d="M12 15h.01"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+</defs>
+</svg>
+
+<div id="deck">
+
+<!-- ======================= 0 · TITLE ======================= -->
+<section class="slide dark s-title" data-wipe="logo">
+  <svg class="stripes-bg"><use href="#aldi-a"/></svg>
+  <div class="bands"><i></i><i></i><i></i><i></i></div>
+  <div class="txt">
+    <div class="kicker a l" style="--d:200">English speaking exam · A2</div>
+    <h1 class="a l" style="--d:380">My part-time job<br><span>at ALDI</span></h1>
+    <div class="who a l" style="--d:600"><svg class="ic"><use href="#i-user"/></svg><div>Pim van Leeuwen<small>Deputy store manager · ALDI Aarle-Rixtel</small></div></div>
+  </div>
+  <div class="logo-box">
+    <svg class="build-logo" viewBox="0 0 283.5 297.6" width="100%" height="100%">
+      <g class="lb"><path fill="#fff" d="M 272.1,286.3 H 11.3 v -275 h 260.8 z"/><path fill="#c80000" d="M 283.5,297.6 283.5,0 0,0 l 0,297.6 283.5,0 0,0 z m -11.4,-11.3 -260.8,0 0,-275 260.8,0 0,275 0,0 z"/></g>
+      <path class="ls" style="--d:0" fill="#001e78" d="M 120.8,25.5 31.3,160.8 c -6.8,10.2 -10,16.2 -10,25.6 0,10.8 2.9,15.6 5.1,20.5 l 14.3,0 c -0.4,-0.8 -0.8,-1.8 -1.2,-2.9 -1.5,-4 -3,-9.5 -2.9,-15.2 0.2,-10.1 3.7,-16.8 9.6,-25.5 l 91.5,-137.8 -16.9,0 0,0 z"/>
+      <path class="ls" style="--d:70" fill="#00b4dc" d="M 140.7,25.5 48.6,164.2 c -5.8,8.6 -9.1,15.1 -9.3,24.7 -0.1,5.6 1.6,12.6 4.2,18.1 l 19.5,0 c -3.1,-5.8 -4.8,-11.8 -4.7,-18.6 0.1,-7.6 3.3,-12.5 7.6,-19 l 95.2,-143.9 -20.4,0 0,0 z"/>
+      <path class="ls" style="--d:140" fill="#001e78" d="M 164.2,25.5 68.4,170.3 c -4.3,6.5 -7.2,11 -7.3,18.1 -0.1,6.7 1.6,12.7 4.9,18.5 l 18.1,0 c -4.2,-4.4 -7.2,-11.5 -6.8,-19 0.1,-1.5 0.4,-3.5 0.8,-5 l 121.9,0 c -0.8,-2.4 -1.6,-4.4 -3.7,-7.2 l -114.8,0 c 1.3,-2.3 3.1,-5.1 4.7,-7.5 l 6.3,-9.4 92.7,0 -5.1,-7.6 -82.5,0 83.1,-125.6 -16.5,0 0,-0.1 z"/>
+      <path class="ls" style="--d:210" fill="#00b4dc" d="m 83.2,172.9 111.4,0 -7.6,-11.4 -96.3,0 -4.5,6.7 c -1,1.5 -2.1,3.2 -3,4.7 l 0,0 z"/>
+      <path class="ls" style="--d:280" fill="#001e78" d="m 199.4,206.9 c 4.2,-4.4 7.2,-11.5 6.8,-19 -0.3,-6.4 -4.3,-12.7 -8.9,-19.7 l -52.5,-78.7 8,-12.1 61.9,92.9 c 4.3,6.5 7.2,11 7.3,18.1 0.1,6.7 -1.6,12.7 -4.9,18.5 l -17.7,0 0,0 z"/>
+      <path class="ls" style="--d:350" fill="#00b4dc" d="m 220.5,206.9 c 3.1,-5.8 4.8,-11.8 4.7,-18.6 -0.1,-7.6 -3.3,-12.5 -7.6,-19 l -63,-94.6 10.2,-15.5 70.1,104.8 c 5.8,8.6 9.1,15.1 9.3,24.7 0.1,5.6 -1.6,12.6 -4.2,18.1 l -19.5,0 0,0.1 z"/>
+      <path class="ls" style="--d:420" fill="#001e78" d="m 242.9,206.9 c 0.5,-1.1 0.8,-1.8 1.2,-2.8 1.5,-4 3.4,-9.5 3.2,-15.3 -0.2,-10.1 -3.7,-16.8 -9.6,-25.5 l -71.2,-106.4 8.2,-12.4 77.5,116.2 c 6.8,10.2 10,16.2 10,25.6 0,10.8 -2.9,15.6 -5.1,20.5 l -14.2,0 0,0.1 z"/>
+      <polygon class="lband" fill="#001e78" points="258,212.6 258,272.1 25.5,272.1 25.5,212.6"/>
+      <path class="lt" fill="#fff" d="m 236.7,265 0,-45.4 -20.4,0 0,45.4 20.4,0 0,0 z m -25,-22.6 c 0,-12.5 -10.1,-22.7 -22.5,-22.7 l -30.1,0 0,45.3 30.1,0 c 12.4,0 22.5,-10.1 22.5,-22.6 l 0,0 z m -18.7,0 c 0,5.4 -4.1,9.9 -9.2,9.9 l -4.4,0 0,-19.7 4.4,0 c 5.1,-0.1 9.2,4.3 9.2,9.8 l 0,0 z m -76.4,22.6 38.5,0 0,-13.1 -17.8,0 0,-32.3 -20.7,0 0,45.4 0,0 z m -23.2,0 20.6,0 -23.2,-45.4 -20.8,0 -23.2,45.4 20.6,0 2.2,-4.8 21.7,0 2.1,4.8 0,0 z m -8.3,-16.7 -9.5,0 4.6,-10.1 4.9,10.1 0,0 z"/>
+    </svg>
+  </div>
+  <div class="floor"></div>
+  <svg class="cart" viewBox="0 0 250 192" aria-hidden="true">
+    <rect x="86" y="58" width="44" height="66" rx="5" fill="#00b4dc"/>
+    <rect x="134" y="34" width="30" height="90" rx="8" fill="#fff"/>
+    <rect x="140" y="26" width="18" height="12" rx="3" fill="#c80000"/>
+    <rect x="168" y="74" width="50" height="50" rx="5" fill="#c80000"/>
+    <path d="M70 52 L232 52 L212 128 L88 128 Z" fill="rgba(255,255,255,.12)"/>
+    <path d="M8 18 H44 L74 128 H214 L236 52 H58" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M100 52 L108 128 M140 52 L142 128 M180 52 L176 128 M64 90 H224" fill="none" stroke="#fff" stroke-width="5" opacity=".55"/>
+    <path d="M74 128 L66 150 H214" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+    <g transform="translate(88 170)"><g class="spin"><circle r="17" fill="#00145a" stroke="#fff" stroke-width="7"/><path d="M-9 0H9M0-9V9" stroke="#fff" stroke-width="4"/></g></g>
+    <g transform="translate(200 170)"><g class="spin"><circle r="17" fill="#00145a" stroke="#fff" stroke-width="7"/><path d="M-9 0H9M0-9V9" stroke="#fff" stroke-width="4"/></g></g>
+  </svg>
+</section>
+
+<!-- ======================= 1 · ABOUT ME ======================= -->
+<section class="slide">
+  <svg class="wm"><use href="#aldi-a"/></svg>
+  <div class="hdr a fade"><svg><use href="#aldi"/></svg><span class="kicker">Let me introduce myself</span></div>
+  <h2 class="ttl a l" style="--d:80">About <em>me</em></h2>
+  <ul class="facts">
+    <li class="a l" style="--d:350"><span class="ico"><svg class="ic"><use href="#i-user"/></svg></span><div><b>Pim van Leeuwen</b><small>My name</small></div></li>
+    <li class="a l" style="--d:520"><span class="ico"><svg class="ic"><use href="#i-cake"/></svg></span><div><b>18 years old</b><small>My age</small></div></li>
+    <li class="a l" style="--d:690"><span class="ico"><svg class="ic"><use href="#i-cap"/></svg></span><div><b>Student</b><small>I study, and next to my studies I work</small></div></li>
+    <li class="a l" style="--d:860"><span class="ico"><svg class="ic"><use href="#i-store"/></svg></span><div><b>Part-time job at ALDI</b><small>Deputy store manager</small></div></li>
+  </ul>
+  <div class="badge-wrap a drop" style="--d:250">
+    <div class="badge-swing">
+      <div class="lanyard"></div>
+      <div class="badge">
+        <div class="clip"></div>
+        <div class="bh"><svg><use href="#aldi"/></svg></div>
+        <div class="bb"><small>Hello, my name is</small><b>Pim</b><span>Deputy store manager</span></div>
+        <div class="bs"></div>
+      </div>
+    </div>
+  </div>
+  <div class="aisle"><div class="plate"><small>AISLE</small><b>1</b><span>OF 7</span></div></div>
+</section>
+
+<!-- ======================= 2 · SHOPPING LIST (AGENDA) ======================= -->
+<section class="slide">
+  <svg class="wm"><use href="#aldi-a"/></svg>
+  <div class="hdr a fade"><svg><use href="#aldi"/></svg><span class="kicker">My plan for today</span></div>
+  <h2 class="ttl a l" style="--d:80">Today's <em>shopping list</em></h2>
+  <div class="steps">
+    <div class="step a l" style="--d:400"><b>FIRST</b><span>Where I work &amp; what ALDI is</span></div>
+    <div class="step a l" style="--d:650"><b>THEN</b><span>When I work &amp; what I do</span></div>
+    <div class="step a l" style="--d:900"><b>FINALLY</b><span>What I think of my job</span></div>
+  </div>
+  <div class="receipt-wrap">
+    <div class="slot"></div>
+    <div class="receipt">
+      <div class="rh"><svg><use href="#aldi"/></svg><b>ALDI AARLE-RIXTEL</b>TODAY'S SHOPPING LIST</div>
+      <hr>
+      <div class="row"><span><em>01</em>ABOUT ME</span><span>1x</span></div>
+      <div class="row"><span><em>02</em>WHERE I WORK</span><span>1x</span></div>
+      <div class="row"><span><em>03</em>ABOUT ALDI</span><span>1x</span></div>
+      <div class="row"><span><em>04</em>WHEN &amp; HOW LONG</span><span>1x</span></div>
+      <div class="row"><span><em>05</em>MY WORKING DAYS</span><span>1x</span></div>
+      <div class="row"><span><em>06</em>WHAT I DO &amp; HOW</span><span>1x</span></div>
+      <div class="row"><span><em>07</em>WHAT I THINK</span><span>1x</span></div>
+      <hr>
+      <div class="row tot"><span>TOTAL</span><span>± 5 MIN</span></div>
+      <div class="bar"></div>
+      <div class="thx">PIM VAN LEEUWEN · ENGLISH A2</div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 3 · WHERE ======================= -->
+<section class="slide">
+  <svg class="wm"><use href="#aldi-a"/></svg>
+  <div class="hdr a fade"><svg><use href="#aldi"/></svg><span class="kicker">Where?</span></div>
+  <h2 class="ttl a l" style="--d:80">Where I <em>work</em></h2>
+  <div class="nl-sign a pop" style="--d:350"><div class="in"><b>Aarle-Rixtel</b><span>Gem. Laarbeek</span></div></div>
+  <div class="chips">
+    <div class="chip a" style="--d:700"><svg class="ic"><use href="#i-home"/></svg>Small village</div>
+    <div class="chip a" style="--d:820"><svg class="ic"><use href="#i-compass"/></svg>South of the Netherlands</div>
+    <div class="chip a" style="--d:940"><svg class="ic"><use href="#i-flag"/></svg>Province: North Brabant</div>
+    <div class="chip a" style="--d:1060"><svg class="ic"><use href="#i-road"/></svg>Close to Helmond &amp; Eindhoven</div>
+  </div>
+  <div class="map a r" style="--d:500">
+    <svg class="m" viewBox="0 0 810 650" aria-hidden="true">
+      <defs><pattern id="grid" width="54" height="54" patternUnits="userSpaceOnUse"><path d="M54 0H0V54" fill="none" stroke="#dfe9f5" stroke-width="2"/></pattern></defs>
+      <rect width="810" height="650" fill="url(#grid)"/>
+      <ellipse cx="250" cy="170" rx="170" ry="90" fill="#e2f1e4"/>
+      <ellipse cx="700" cy="520" rx="150" ry="80" fill="#e2f1e4"/>
+      <ellipse cx="120" cy="600" rx="140" ry="60" fill="#e2f1e4"/>
+      <path d="M-20 560 C 140 520, 260 470, 360 440 S 560 360, 600 345 S 760 320, 830 300" fill="none" stroke="#c5d2e6" stroke-width="22" stroke-linecap="round"/>
+      <path d="M-20 560 C 140 520, 260 470, 360 440 S 560 360, 600 345 S 760 320, 830 300" fill="none" stroke="#fff" stroke-width="6" stroke-dasharray="18 16"/>
+      <path d="M600 345 C 585 290, 565 245, 478 195 S 420 80, 400 -20" fill="none" stroke="#c5d2e6" stroke-width="16" stroke-linecap="round"/>
+      <circle cx="220" cy="495" r="22" fill="#001e78"/><circle cx="220" cy="495" r="9" fill="#fff"/>
+      <text class="lbl" x="250" y="545">Eindhoven</text>
+      <circle cx="600" cy="345" r="18" fill="#001e78"/><circle cx="600" cy="345" r="7" fill="#fff"/>
+      <text class="lbl" x="628" y="395">Helmond</text>
+      <text class="big" x="452" y="222" text-anchor="end">Aarle-Rixtel</text>
+      <g transform="translate(735 70)"><circle r="34" fill="#fff" stroke="#c5d2e6" stroke-width="3"/><path d="M0 -24 L10 6 L0 0 L-10 6 Z" fill="#c80000"/><text x="0" y="24" text-anchor="middle" style="font:800 20px var(--cond);fill:#001e78">N</text></g>
+    </svg>
+    <div class="pin">
+      <div class="ring"></div>
+      <div class="body">
+        <svg viewBox="0 0 120 150" width="120" height="150"><path d="M60 146 C 60 146 112 92 112 54 A 52 52 0 0 0 8 54 C 8 92 60 146 60 146 Z" fill="#001e78"/><circle cx="60" cy="54" r="40" fill="#fff"/><svg x="34" y="27" width="52" height="55"><use href="#aldi"/></svg></svg>
+      </div>
+    </div>
+    <div class="mytag a pop" style="--d:1500">MY ALDI</div>
+    <div class="cap">The Netherlands · North Brabant</div>
+  </div>
+  <div class="aisle"><div class="plate"><small>AISLE</small><b>2</b><span>OF 7</span></div></div>
+</section>
+
+<!-- ======================= 4 · ABOUT ALDI ======================= -->
+<section class="slide">
+  <svg class="wm"><use href="#aldi-a"/></svg>
+  <div class="hdr a fade"><svg><use href="#aldi"/></svg><span class="kicker">The company</span></div>
+  <h2 class="ttl a l" style="--d:80">What is <em>ALDI?</em></h2>
+  <div class="name a l" style="--d:300"><small>THE NAME:</small><span><mark>AL</mark>brecht <mark class="r">DI</mark>scount</span></div>
+  <div class="stats">
+    <div class="tag a pop" style="--d:500"><div class="th">Started</div><div class="n" data-count="1946" data-from="1900" data-sep="no">1946</div><div class="c">in Germany</div>
+      <svg class="flag" viewBox="0 0 5 3"><rect width="5" height="1" fill="#000"/><rect y="1" width="5" height="1" fill="#dd0000"/><rect y="2" width="5" height="1" fill="#ffce00"/></svg></div>
+    <div class="tag a pop" style="--d:650"><div class="th">In the Netherlands</div><div class="n" data-count="1973" data-from="1946" data-sep="no">1973</div><div class="c">since</div>
+      <svg class="flag" viewBox="0 0 9 6"><rect width="9" height="2" fill="#ae1c28"/><rect y="2" width="9" height="2" fill="#fff"/><rect y="4" width="9" height="2" fill="#21468b"/></svg></div>
+    <div class="tag a pop" style="--d:800"><div class="th">Stores in NL</div><div class="n" data-count="500" data-pre="± ">± 500</div><div class="c">almost 500 stores</div></div>
+    <div class="tag a pop" style="--d:950"><div class="th">Worldwide</div><div class="n" data-count="10000" data-suf="+">10,000+</div><div class="c">stores in the world</div></div>
+  </div>
+  <div class="feat">
+    <div class="chip a" style="--d:1300"><svg class="ic"><use href="#i-tag"/></svg>Discount: low prices</div>
+    <div class="chip a" style="--d:1420"><svg class="ic"><use href="#i-box"/></svg>Mostly own brands</div>
+    <div class="chip a" style="--d:1540"><svg class="ic"><use href="#i-star"/></svg>Special offers every week</div>
+  </div>
+  <div class="aisle"><div class="plate"><small>AISLE</small><b>3</b><span>OF 7</span></div></div>
+</section>
+
+<!-- ======================= 5 · WHEN & HOW LONG ======================= -->
+<section class="slide">
+  <svg class="wm"><use href="#aldi-a"/></svg>
+  <div class="hdr a fade"><svg><use href="#aldi"/></svg><span class="kicker">When &amp; how long?</span></div>
+  <h2 class="ttl a l" style="--d:80">When did I <em>start?</em></h2>
+  <div class="year a l" style="--d:300"><b>1</b><span>year<br>at ALDI</span></div>
+  <div class="since a drop" style="--d:500"><div class="card"><small>FIRST DAY</small><b>Autumn 2025</b></div></div>
+  <div class="tl a fade" style="--d:600">
+    <div class="track"></div>
+    <div class="fill"></div>
+    <!-- 13 month ticks: Nov 2025 → Nov 2026 -->
+    <i class="tick" style="left:0%"></i><i class="tick" style="left:8.333%"></i><i class="tick" style="left:16.667%"></i><i class="tick" style="left:25%"></i><i class="tick" style="left:33.333%"></i><i class="tick" style="left:41.667%"></i><i class="tick" style="left:50%"></i><i class="tick" style="left:58.333%"></i><i class="tick" style="left:66.667%"></i><i class="tick" style="left:75%"></i><i class="tick" style="left:83.333%"></i><i class="tick" style="left:91.667%"></i><i class="tick" style="left:100%"></i>
+    <span class="m" style="left:0%">NOV</span><span class="m" style="left:16.667%">JAN</span><span class="m" style="left:33.333%">MAR</span><span class="m" style="left:50%">MAY</span><span class="m" style="left:66.667%">JUL</span><span class="m" style="left:83.333%">SEP</span><span class="m" style="left:100%">NOV</span>
+    <span class="end s" style="left:0%">2025</span>
+    <span class="end" style="left:100%">NOW · 2026</span>
+    <div class="tcart"><svg class="ic"><use href="#i-cart"/></svg></div>
+  </div>
+  <div class="aisle"><div class="plate"><small>AISLE</small><b>4</b><span>OF 7</span></div></div>
+</section>
+
+<!-- ======================= 6 · DAYS ======================= -->
+<section class="slide">
+  <svg class="wm"><use href="#aldi-a"/></svg>
+  <div class="hdr a fade"><svg><use href="#aldi"/></svg><span class="kicker">Which days?</span></div>
+  <h2 class="ttl a l" style="--d:80">My working <em>days</em></h2>
+  <div class="week">
+    <div class="day a" style="--d:300"><b>MON</b><small>Monday</small></div>
+    <div class="day a" style="--d:360"><b>TUE</b><small>Tuesday</small></div>
+    <div class="day a" style="--d:420"><b>WED</b><small>Wednesday</small></div>
+    <div class="day on a pop" style="--d:800"><b>THU</b><small>Thursday</small><span class="tick"><svg class="ic"><use href="#i-check"/></svg></span></div>
+    <div class="day a" style="--d:540"><b>FRI</b><small>Friday</small></div>
+    <div class="day on a pop" style="--d:1050"><b>SAT</b><small>Saturday</small><span class="tick"><svg class="ic"><use href="#i-check"/></svg></span><span class="busy">BUSIEST DAY!</span></div>
+    <div class="day on a pop" style="--d:1300"><b>SUN</b><small>Sunday</small><span class="tick"><svg class="ic"><use href="#i-check"/></svg></span></div>
+  </div>
+  <div class="dsum a l" style="--d:1500"><b>± 3</b><span>days a week<small>mostly Thursday, Saturday &amp; Sunday</small></span></div>
+  <div class="dchips">
+    <div class="chip a r" style="--d:1700"><svg class="ic"><use href="#i-sun"/></svg>Sometimes early in the morning</div>
+    <div class="chip a r" style="--d:1820"><svg class="ic"><use href="#i-moon"/></svg>Sometimes until the store closes</div>
+  </div>
+  <div class="aisle"><div class="plate"><small>AISLE</small><b>5</b><span>OF 7</span></div></div>
+</section>
+
+<!-- ======================= 7 · ROLE ======================= -->
+<section class="slide">
+  <svg class="wm"><use href="#aldi-a"/></svg>
+  <div class="hdr a fade"><svg><use href="#aldi"/></svg><span class="kicker">What do I do?</span></div>
+  <h2 class="ttl a l" style="--d:80">My job: <em>deputy store manager</em></h2>
+  <div class="claim a pop" style="--d:350">
+    <div class="k"><svg class="ic"><use href="#i-key"/></svg></div>
+    <p><small>Store manager not there?</small>Then I am in charge of the store.</p>
+  </div>
+  <div class="resp a fade" style="--d:700">I AM RESPONSIBLE FOR:</div>
+  <div class="three">
+    <div class="t a" style="--d:850"><svg class="ic"><use href="#i-team"/></svg><b>The team</b></div>
+    <div class="t a" style="--d:1000"><svg class="ic"><use href="#i-euro"/></svg><b>The money</b></div>
+    <div class="t a" style="--d:1150"><svg class="ic"><use href="#i-box"/></svg><b>The products</b></div>
+  </div>
+  <div class="four a r" style="--d:1450">4 MAIN TASKS →</div>
+  <div class="aisle"><div class="plate"><small>AISLE</small><b>6</b><span>OF 7</span></div></div>
+</section>
+
+<!-- ======================= 8 · TASKS 1 + 2 ======================= -->
+<section class="slide">
+  <svg class="wm"><use href="#aldi-a"/></svg>
+  <div class="hdr a fade"><svg><use href="#aldi"/></svg><span class="kicker">What I do · how I do it</span></div>
+  <h2 class="ttl a l" style="--d:80">My tasks <em>(1)</em></h2>
+  <div class="tasks">
+    <div class="task a" style="--d:300">
+      <div class="top"><div class="ti"><span class="num">1</span><svg class="ic"><use href="#i-key"/></svg></div><h3>Open &amp; close<br>the store</h3></div>
+      <span class="lab">WHAT I DO</span>
+      <ul><li>Morning: alarm off, cash registers ready</li><li>Evening: lock everything</li></ul>
+      <div class="how"><span class="lab">HOW I DO IT</span><p><svg class="ic"><use href="#i-check"/></svg>I always use a checklist</p></div>
+    </div>
+    <div class="task a" style="--d:700">
+      <div class="top"><div class="ti"><span class="num">2</span><svg class="ic"><use href="#i-team"/></svg></div><h3>Lead<br>the team</h3></div>
+      <span class="lab">WHAT I DO</span>
+      <ul><li>Make a plan before the shift</li><li>Divide the tasks: checkout or shelves?</li></ul>
+      <div class="how"><span class="lab">HOW I DO IT</span><p><svg class="ic"><use href="#i-check"/></svg>Colleague sick? I find a solution</p></div>
+    </div>
+  </div>
+  <div class="aisle"><div class="plate"><small>AISLE</small><b>6</b><span>OF 7</span></div></div>
+</section>
+
+<!-- ======================= 9 · TASKS 3 + 4 ======================= -->
+<section class="slide">
+  <svg class="wm"><use href="#aldi-a"/></svg>
+  <div class="hdr a fade"><svg><use href="#aldi"/></svg><span class="kicker">What I do · how I do it</span></div>
+  <h2 class="ttl a l" style="--d:80">My tasks <em>(2)</em></h2>
+  <div class="tasks">
+    <div class="task a" style="--d:300">
+      <div class="top"><div class="ti"><span class="num">3</span><svg class="ic"><use href="#i-safe"/></svg></div><h3>Cash registers<br>&amp; safe</h3></div>
+      <span class="lab">WHAT I DO</span>
+      <ul><li>Count the money at the end of the day</li><li>Put the money in the safe</li></ul>
+      <div class="how"><span class="lab">HOW I DO IT</span><p><svg class="ic"><use href="#i-check"/></svg>Very carefully: I check twice</p></div>
+    </div>
+    <div class="task a" style="--d:700">
+      <div class="top"><div class="ti"><span class="num">4</span><svg class="ic"><use href="#i-truck"/></svg></div><h3>Deliveries &amp;<br>fresh products</h3></div>
+      <span class="lab">WHAT I DO</span>
+      <ul><li>Check the delivery from the truck</li><li>Check the dates: milk, meat …</li></ul>
+      <div class="how"><span class="lab">HOW I DO IT</span><p><svg class="ic"><use href="#i-check"/></svg>First in, first out + discount sticker</p></div>
+    </div>
+  </div>
+  <div class="aisle"><div class="plate"><small>AISLE</small><b>6</b><span>OF 7</span></div></div>
+</section>
+
+<!-- ======================= 10 · OPINION ======================= -->
+<section class="slide">
+  <svg class="wm"><use href="#aldi-a"/></svg>
+  <div class="hdr a fade"><svg><use href="#aldi"/></svg><span class="kicker">My opinion</span></div>
+  <h2 class="ttl a l" style="--d:80">What do I <em>think?</em></h2>
+  <div class="ops">
+    <div class="op a l" style="--d:350"><span class="sg">+</span><svg class="ic"><use href="#i-bulb"/></svg><div><b>I learned a lot</b><small>Responsibility · leading a team · solving problems</small></div></div>
+    <div class="op a l" style="--d:650"><span class="sg">+</span><svg class="ic"><use href="#i-euro"/></svg><div><b>Good money</b><small>And extra pay on Sunday</small></div></div>
+    <div class="op min a l" style="--d:950"><span class="sg">–</span><svg class="ic"><use href="#i-bolt"/></svg><div><b>Sometimes busy &amp; stressful</b><small>A busy Saturday · a colleague is sick</small></div></div>
+  </div>
+  <div class="allin a l" style="--d:1300">All in all: <em>I really like my job!</em></div>
+  <div class="hang a drop" style="--d:700">
+    <div class="str"></div>
+    <div class="ptag"><small>MY SCORE</small><b>8<sup>/10</sup></b><span>I give my job an eight out of ten</span></div>
+  </div>
+  <div class="aisle"><div class="plate"><small>AISLE</small><b>7</b><span>OF 7</span></div></div>
+</section>
+
+<!-- ======================= 11 · THANK YOU ======================= -->
+<section class="slide dark s-end" data-wipe="logo" data-fx="confetti">
+  <div class="bands"><i></i><i></i><i></i><i></i></div>
+  <div class="txt">
+    <svg class="mini a pop" style="--d:150"><use href="#aldi"/></svg>
+    <h1 class="a l" style="--d:300">Thank you<br>for listening!</h1>
+    <h2 class="a pop" style="--d:700"><svg class="ic"><use href="#i-chat"/></svg>Any questions?</h2>
+  </div>
+  <div class="receipt-wrap">
+    <div class="slot"></div>
+    <div class="receipt">
+      <div class="rh"><svg><use href="#aldi"/></svg><b>ALDI AARLE-RIXTEL</b>SHOPPING LIST: DONE</div>
+      <hr>
+      <div class="row"><span><em>01</em>ABOUT ME</span><span class="ok">✓</span></div>
+      <div class="row"><span><em>02</em>WHERE I WORK</span><span class="ok">✓</span></div>
+      <div class="row"><span><em>03</em>ABOUT ALDI</span><span class="ok">✓</span></div>
+      <div class="row"><span><em>04</em>WHEN &amp; HOW LONG</span><span class="ok">✓</span></div>
+      <div class="row"><span><em>05</em>MY WORKING DAYS</span><span class="ok">✓</span></div>
+      <div class="row"><span><em>06</em>WHAT I DO &amp; HOW</span><span class="ok">✓</span></div>
+      <div class="row"><span><em>07</em>WHAT I THINK</span><span class="ok">✓</span></div>
+      <hr>
+      <div class="row tot"><span>TOTAL</span><span>7/7 ✓</span></div>
+      <div class="row"><span>PAID WITH:</span><span>YOUR ATTENTION</span></div>
+      <div class="bar"></div>
+      <div class="thx">THANK YOU · SEE YOU AT ALDI!</div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /deck -->
+
+<!-- transition overlay -->
+<div id="wipe" aria-hidden="true">
+  <div class="bands">
+    <div class="band" style="flex:3"><i style="background:#001e78"></i></div>
+    <div class="band" style="flex:1"><i style="background:#00b4dc"></i></div>
+    <div class="band" style="flex:2.2"><i style="background:#0a2f95"></i></div>
+    <div class="band" style="flex:.8"><i style="background:#00b4dc"></i></div>
+    <div class="band" style="flex:3"><i style="background:#001e78"></i></div>
+    <div class="band" style="flex:1.2"><i style="background:#00b4dc"></i></div>
+    <div class="band" style="flex:2.6"><i style="background:#0a2f95"></i></div>
+    <div class="band" style="flex:.6"><i style="background:#c80000"></i></div>
+    <div class="band" style="flex:3"><i style="background:#001e78"></i></div>
+  </div>
+  <div class="wlogo"><svg viewBox="0 0 283.5 297.6"><use href="#aldi"/></svg></div>
+</div>
+
+<div id="progress"></div>
+<div id="hint"><b>→</b> / klik = volgende · <b>←</b> = terug · <b>F</b> = volledig scherm · <b>N</b> = spreektekst (oefenen) · <b>P</b> = presentatorscherm · <b>O</b> = overzicht · <b>H</b> = help</div>
+
+<div id="notes" class="ov" aria-live="polite"></div>
+<div id="overview" class="ov"><h3>Ga naar slide</h3><div class="grid"></div></div>
+<div id="help" class="ov"><h3>Bediening</h3><div class="box">
+  <table>
+    <tr><td><kbd>→</kbd> <kbd>spatie</kbd> <kbd>klik</kbd></td><td>Volgende slide (op tablet: veeg naar links)</td></tr>
+    <tr><td><kbd>←</kbd></td><td>Vorige slide (of klik links op het scherm)</td></tr>
+    <tr><td><kbd>F</kbd></td><td>Volledig scherm aan/uit — doe dit als eerste!</td></tr>
+    <tr><td><kbd>N</kbd></td><td>Spreektekst onderin (Engels + Nederlands) — om te oefenen</td></tr>
+    <tr><td><kbd>P</kbd></td><td>Presentatorscherm in een apart venster (tekst, tijd, volgende slide)</td></tr>
+    <tr><td><kbd>T</kbd> / <kbd>R</kbd></td><td>Stopwatch starten/pauzeren · stopwatch op 0 zetten</td></tr>
+    <tr><td><kbd>O</kbd></td><td>Overzicht van alle slides (handig bij vragen)</td></tr>
+    <tr><td><kbd>Home</kbd> / <kbd>End</kbd></td><td>Eerste / laatste slide</td></tr>
+    <tr><td><kbd>Esc</kbd></td><td>Sluit dit scherm</td></tr>
+  </table>
+  <div class="warn">Let op: tijdens het examen mag je alleen een lijstje met max. 10 steekwoorden gebruiken. Gebruik N en P dus alleen om te oefenen!</div>
+</div></div>
+
+<script>
+(() => {
+/* ============ SPREEKTEKST (bron voor N, P en spreektekst.html) ============ */
+const SCRIPT = /*SCRIPT-START*/[
+ {t:"Title", p:"Opening", sec:12, kw:"–",
+  en:["Hello everyone, and welcome to my presentation. Today I am going to tell you about my part-time job at ALDI."],
+  nl:["Hallo allemaal, en welkom bij mijn presentatie. Vandaag ga ik jullie vertellen over mijn bijbaan bij ALDI."],
+  extra:"",
+  tip:"Kijk het publiek aan en glimlach. Wacht twee seconden en begin dan pas te praten."},
+ {t:"About me", p:"Punt 1 – Stel jezelf voor", sec:22, kw:"Pim",
+  en:["First, let me introduce myself. My name is Pim van Leeuwen, and I am eighteen years old. I am a student, and next to my studies I work at ALDI. I am a deputy store manager there."],
+  nl:["Eerst stel ik mezelf even voor. Mijn naam is Pim van Leeuwen en ik ben achttien jaar oud. Ik ben student, en naast mijn studie werk ik bij ALDI. Ik ben daar vervangend filiaalmanager."],
+  extra:"",
+  tip:"Zeg 'I am eighteen years old', níet 'I have eighteen years'."},
+ {t:"Today's shopping list", p:"Opbouw (agenda)", sec:18, kw:"–",
+  en:["This is my shopping list for today. First, I will tell you where I work and what ALDI is. Then I will tell you when I work and what I do. Finally, I will tell you what I think of my job."],
+  nl:["Dit is mijn boodschappenlijstje voor vandaag. Eerst vertel ik waar ik werk en wat ALDI is. Daarna vertel ik wanneer ik werk en wat ik doe. Tot slot vertel ik wat ik van mijn baan vind."],
+  extra:"",
+  tip:"Dit is je agenda. Een duidelijke opbouw (First – Then – Finally) levert punten op voor samenhang."},
+ {t:"Where I work", p:"Punt 2 – Waar je werkt", sec:18, kw:"Aarle-Rixtel",
+  en:["I work at the ALDI in Aarle-Rixtel. Aarle-Rixtel is a small village in the south of the Netherlands, in the province of North Brabant. It is close to Helmond and Eindhoven."],
+  nl:["Ik werk bij de ALDI in Aarle-Rixtel. Aarle-Rixtel is een klein dorp in het zuiden van Nederland, in de provincie Noord-Brabant. Het ligt dicht bij Helmond en Eindhoven."],
+  extra:"",
+  tip:"Wijs naar het kaartje als je 'close to Helmond and Eindhoven' zegt."},
+ {t:"What is ALDI?", p:"Punt 3 – Beschrijving van het bedrijf", sec:40, kw:"Discount",
+  en:["ALDI is a supermarket from Germany. The name comes from Albrecht Discount. The Albrecht brothers started the company in 1946.","ALDI is a discount supermarket, so the prices are low. It sells mostly its own brands, and every week there are special offers, like clothes and tools.","ALDI came to the Netherlands in 1973. Now there are almost 500 stores in the Netherlands, and more than 10,000 in the world."],
+  nl:["ALDI is een supermarkt uit Duitsland. De naam komt van Albrecht Discount. De broers Albrecht zijn het bedrijf in 1946 begonnen.","ALDI is een discountsupermarkt, dus de prijzen zijn laag. ALDI verkoopt vooral eigen merken, en elke week zijn er speciale aanbiedingen, zoals kleding en gereedschap.","ALDI kwam in 1973 naar Nederland. Nu zijn er bijna 500 winkels in Nederland en meer dan 10.000 in de wereld."],
+  extra:"There are two ALDI companies: ALDI Nord and ALDI Süd. In the Netherlands we have ALDI Nord.",
+  tip:"Getallen: 1946 = nineteen forty-six · 1973 = nineteen seventy-three · 500 = five hundred · 10,000 = ten thousand."},
+ {t:"When did I start?", p:"Punt 4 – Wanneer en hoelang", sec:15, kw:"2025",
+  en:["I started at ALDI one year ago, in the autumn of 2025. So I have worked there for about one year now."],
+  nl:["Ik ben een jaar geleden bij ALDI begonnen, in de herfst van 2025. Ik werk daar nu dus ongeveer een jaar."],
+  extra:"",
+  tip:"Zeg 'I have worked there for one year'. Níet 'I work there since one year' – dat is een typische Nederlandse fout. 2025 = twenty twenty-five."},
+ {t:"My working days", p:"Punt 5 – Op welke dagen", sec:22, kw:"Thu-Sat-Sun",
+  en:["I work about three days a week, mostly on Thursday, Saturday and Sunday. Saturday is the busiest day, because many people do their shopping for the weekend. Sometimes I start early in the morning, and sometimes I work until the store closes."],
+  nl:["Ik werk ongeveer drie dagen per week, meestal op donderdag, zaterdag en zondag. Zaterdag is de drukste dag, omdat veel mensen dan boodschappen doen voor het weekend. Soms begin ik vroeg in de ochtend, en soms werk ik tot de winkel dichtgaat."],
+  extra:"",
+  tip:"Dagen altijd met 'on': on Thursday. Bij 'Thursday' zet je je tong tussen je tanden (th)."},
+ {t:"My job: deputy store manager", p:"Punt 6 – Wat je doet (inleiding)", sec:18, kw:"–",
+  en:["As a deputy store manager, I am in charge when the store manager is not there. I am responsible for the team, the money and the products. I have four main tasks."],
+  nl:["Als vervangend filiaalmanager heb ik de leiding als de filiaalmanager er niet is. Ik ben verantwoordelijk voor het team, het geld en de producten. Ik heb vier hoofdtaken."],
+  extra:"",
+  tip:"'in charge' = de leiding hebben. 'responsible' spreek je uit als rie-SPON-sie-bul."},
+ {t:"My tasks (1)", p:"Punt 6 – Wat je doet + hoe je het aanpakt", sec:42, kw:"Checklist · Team",
+  en:["My first task is opening and closing the store. In the morning I turn off the alarm and I prepare the cash registers. In the evening I lock everything. I always use a checklist, so I don't forget anything.","My second task is leading the team. Before the shift, I make a plan and I divide the tasks: who works at the checkout and who fills the shelves. When a colleague is sick, I find a solution. For example, I call another colleague."],
+  nl:["Mijn eerste taak is de winkel openen en sluiten. 's Ochtends zet ik het alarm uit en maak ik de kassa's klaar. 's Avonds sluit ik alles af. Ik gebruik altijd een checklist, zodat ik niets vergeet.","Mijn tweede taak is het team aansturen. Voor de dienst maak ik een planning en verdeel ik de taken: wie op de kassa werkt en wie de schappen vult. Als een collega ziek is, zoek ik een oplossing. Ik bel bijvoorbeeld een andere collega."],
+  extra:"When it is very busy, I also help at the checkout myself.",
+  tip:"Punt 6 vraagt ook HOE je het aanpakt. Zeg dus steeds hoe: checklist, planning, oplossing."},
+ {t:"My tasks (2)", p:"Punt 6 – Wat je doet + hoe je het aanpakt", sec:42, kw:"Safe · Delivery",
+  en:["My third task is the cash registers and the safe. At the end of the day I count the money and I put it in the safe. I work very carefully, and I check everything twice.","My fourth task is deliveries and fresh products. A truck brings new products, and I check the delivery. I also check the dates on products like milk and meat. Products that are almost out of date get a discount sticker. We put the oldest products in the front: first in, first out."],
+  nl:["Mijn derde taak zijn de kassa's en de kluis. Aan het eind van de dag tel ik het geld en leg ik het in de kluis. Ik werk heel zorgvuldig en ik controleer alles twee keer.","Mijn vierde taak zijn leveringen en verse producten. Een vrachtwagen brengt nieuwe producten en ik controleer de levering. Ik controleer ook de datums op producten zoals melk en vlees. Producten die bijna over de datum zijn, krijgen een kortingssticker. We zetten de oudste producten vooraan: wat het eerst binnenkomt, gaat er ook het eerst uit."],
+  extra:"",
+  tip:"'safe' = kluis (spreek uit: seef). 'checkout' = kassa. 'shelves' = schappen."},
+ {t:"What do I think?", p:"Punt 7 – Wat je ervan vindt", sec:35, kw:"8/10",
+  en:["What do I think of my job? I learned a lot at ALDI: to take responsibility, to lead a team and to solve problems. I also earn good money, and on Sunday I get extra pay.","But sometimes it is busy and stressful, for example on a Saturday or when a colleague is sick. All in all, I really like my job. I give it an eight out of ten."],
+  nl:["Wat vind ik van mijn baan? Ik heb veel geleerd bij ALDI: verantwoordelijkheid nemen, een team leiden en problemen oplossen. Ik verdien ook goed, en op zondag krijg ik extra betaald.","Maar soms is het druk en stressvol, bijvoorbeeld op zaterdag of als een collega ziek is. Al met al vind ik mijn baan echt leuk. Ik geef het een acht uit tien."],
+  extra:"",
+  tip:"Een mening met een plus én een min ('But …') laat zien dat je kunt nuanceren. Goed voor je cijfer!"},
+ {t:"Thank you!", p:"Afsluiting + vragen", sec:12, kw:"–",
+  en:["That was my presentation about my job at ALDI. Thank you for listening! Do you have any questions?"],
+  nl:["Dat was mijn presentatie over mijn baan bij ALDI. Bedankt voor het luisteren! Hebben jullie nog vragen?"],
+  extra:"",
+  tip:"Blijf rustig staan en kijk de klas in. Luister goed naar de vraag en antwoord in een hele zin."}
+]/*SCRIPT-END*/;
+
+/* ============ deck ============ */
+const deck = document.getElementById('deck');
+const slides = [...deck.querySelectorAll('.slide')];
+const N = slides.length;
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let cur = -1, busy = false;
+
+function fit(){
+  const s = Math.min(innerWidth/1920, innerHeight/1080);
+  deck.style.transform = 'scale(' + s + ')';
+  deck.style.left = ((innerWidth - 1920*s)/2) + 'px';
+  deck.style.top  = ((innerHeight - 1080*s)/2) + 'px';
+}
+addEventListener('resize', fit); fit();
+
+// shelf-edge footer on every light slide
+slides.forEach((s, i) => {
+  if (s.classList.contains('dark')) return;
+  const f = document.createElement('footer');
+  f.className = 'shelf';
+  f.innerHTML = '<span>Pim van Leeuwen <i>·</i> My part-time job at ALDI</span><span class="no">' + String(i+1).padStart(2,'0') + ' / ' + N + '</span>';
+  s.appendChild(f);
+});
+
+const fmtNum = (v, sep) => sep ? v.toLocaleString('en-US') : String(v);
+function counters(s){
+  s.querySelectorAll('[data-count]').forEach(el => {
+    const to = +el.dataset.count, from = +(el.dataset.from || 0);
+    const pre = el.dataset.pre || '', suf = el.dataset.suf || '', sep = el.dataset.sep !== 'no';
+    if (reduce) { el.textContent = pre + fmtNum(to, sep) + suf; return; }
+    const t0 = performance.now() + 700, dur = 1500;
+    el.textContent = pre + fmtNum(from, sep) + suf;
+    const tick = t => {
+      const p = Math.min(1, Math.max(0, (t - t0) / dur)), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = pre + fmtNum(Math.round(from + (to - from) * e), sep) + suf;
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  });
+}
+function confetti(s){
+  s.querySelector('.confetti')?.remove();
+  if (reduce) return;
+  const box = document.createElement('div'); box.className = 'confetti';
+  const cols = ['#00b4dc','#ffffff','#c80000','#00b4dc','#0a2f95'];
+  for (let i = 0; i < 70; i++) {
+    const c = document.createElement('i');
+    c.style.left = (Math.random()*100) + '%';
+    c.style.background = cols[i % cols.length];
+    c.style.animationDuration = (2.6 + Math.random()*2.4) + 's';
+    c.style.animationDelay = (0.4 + Math.random()*1.6) + 's';
+    c.style.transform = 'rotate(' + (Math.random()*180) + 'deg)';
+    c.style.width = (10 + Math.random()*10) + 'px';
+    box.appendChild(c);
+  }
+  s.prepend(box);
+}
+
+const progress = document.getElementById('progress');
+function activate(n){
+  if (cur >= 0) slides[cur].classList.remove('active', 'go');
+  cur = n;
+  const s = slides[n];
+  s.classList.add('active'); void s.offsetWidth; s.classList.add('go');
+  counters(s);
+  if (s.dataset.fx === 'confetti') confetti(s);
+  progress.style.width = (n/(N-1)*100) + '%';
+  try { history.replaceState(null, '', '#' + (n+1)); } catch(e) {}
+  if (n > 0 && !timer.started) timer.start();
+  renderNotes(); syncPresenter(); markOverview();
+}
+
+/* ALDI stripe wipe */
+const bands = [...document.querySelectorAll('#wipe .band i')];
+const wlogo = document.querySelector('#wipe .wlogo');
+function go(n){
+  n = Math.max(0, Math.min(N-1, n));
+  if (n === cur) return;
+  if (busy) return; // ignore extra presses during the transition, so a double click never skips a slide
+  if (reduce) { activate(n); return; }
+  busy = true;
+  const dir = n > cur ? 1 : -1;
+  const order = dir > 0 ? bands : [...bands].reverse();
+  const withLogo = slides[n].dataset.wipe === 'logo' || (slides[cur] && slides[cur].dataset.wipe === 'logo');
+  const D = 330, ST = 38, EASE = 'cubic-bezier(.65,0,.35,1)';
+  order.forEach(b => b.style.transformOrigin = dir > 0 ? 'left center' : 'right center');
+  const ins = order.map((b, i) => b.animate([{transform:'scaleX(0)'},{transform:'scaleX(1)'}], {duration:D, delay:i*ST, easing:EASE, fill:'forwards'}));
+  ins[ins.length-1].finished.then(() => {
+    activate(n);
+    let hold = 70;
+    if (withLogo) {
+      hold = 560;
+      wlogo.animate([
+        {opacity:0, transform:'translate(-50%,-50%) scale(.5) rotate(-8deg)'},
+        {opacity:1, transform:'translate(-50%,-50%) scale(1.06) rotate(0)', offset:.4},
+        {opacity:1, transform:'translate(-50%,-50%) scale(1)', offset:.75},
+        {opacity:0, transform:'translate(-50%,-50%) scale(1.15)'}
+      ], {duration:860, easing:'cubic-bezier(.2,.8,.2,1)'});
+    }
+    setTimeout(() => {
+      order.forEach(b => b.style.transformOrigin = dir > 0 ? 'right center' : 'left center');
+      const outs = order.map((b, i) => b.animate([{transform:'scaleX(1)'},{transform:'scaleX(0)'}], {duration:D, delay:i*ST, easing:EASE, fill:'forwards'}));
+      outs[outs.length-1].finished.then(() => {
+        ins.concat(outs).forEach(a => a.cancel());
+        busy = false;
+      });
+    }, hold);
+  });
+}
+const next = () => go(cur + 1);
+const prev = () => go(cur - 1);
+
+/* ============ timer ============ */
+const timer = {
+  started:false, running:false, t0:0, acc:0,
+  ms(){ return this.acc + (this.running ? performance.now() - this.t0 : 0); },
+  start(){ if (this.running) return; this.started = true; this.running = true; this.t0 = performance.now(); },
+  pause(){ if (!this.running) return; this.acc += performance.now() - this.t0; this.running = false; },
+  toggle(){ this.running ? this.pause() : this.start(); },
+  reset(){ this.acc = 0; this.running = false; this.started = false; }
+};
+const fmt = ms => { const s = Math.floor(ms/1000); return Math.floor(s/60) + ':' + String(s%60).padStart(2,'0'); };
+function state(ms){
+  const m = ms/60000;
+  if (m < 3.5) return ['#3a4f8f', timer.running ? 'Bezig' : 'Gepauzeerd'];
+  if (m < 4)   return ['#c98a00', 'Bijna 4 min'];
+  if (m < 5.5) return ['#1a9e4b', 'Goed: 4–6 min'];
+  if (m < 6)   return ['#e06400', 'Rond nu af!'];
+  return ['#c80000', 'Over 6 min!'];
+}
+const targetAt = i => SCRIPT.slice(0, i).reduce((a, d) => a + d.sec, 0) * 1000;
+const total = targetAt(SCRIPT.length);
+
+/* ============ notes (N) ============ */
+const notes = document.getElementById('notes');
+const esc = s => String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+function notesHTML(i){
+  const d = SCRIPT[i] || SCRIPT[0];
+  return '<div class="nm"><div class="l">Slide <b>' + (i+1) + '/' + N + '</b> · <b>' + esc(d.t) + '</b> · ' + esc(d.p) + ' · doel ± ' + d.sec + ' sec · je zou nu rond <b>' + fmt(targetAt(i)) + '</b> moeten zitten</div>' +
+    '<div class="tm"><span class="clock" data-clock>0:00</span><span class="st" data-state></span></div></div>' +
+    '<div class="en">' + d.en.map(p => '<p>' + esc(p) + '</p>').join('') + '</div>' +
+    '<div class="nl">' + d.nl.map(p => '<p>' + esc(p) + '</p>').join('') + '</div>' +
+    (d.extra ? '<div class="xt">EXTRA zin (alleen als je onder de 4:30 zit): ' + esc(d.extra) + '</div>' : '') +
+    '<div class="tp">Tip: ' + esc(d.tip) + '</div>';
+}
+function renderNotes(){
+  if (!notes.classList.contains('show')) return;
+  notes.innerHTML = notesHTML(cur) + '<div class="warn">Alleen om te oefenen – tijdens het examen mag je max. 10 steekwoorden gebruiken.</div>';
+  tickClock();
+}
+
+/* ============ presenter window (P) ============ */
+let pw = null;
+const PRESENTER = '<!doctype html><html lang="nl"><head><meta charset="utf-8"><title>Presentatorscherm – ALDI</title><style>' +
+ 'body{margin:0;font-family:Barlow,Segoe UI,Arial,sans-serif;background:#00145a;color:#fff}' +
+ 'header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 22px;background:#001e78;border-bottom:6px solid #00b4dc;flex-wrap:wrap}' +
+ '.clock{font:800 54px/1 "Barlow Condensed",Arial Narrow,Arial;font-variant-numeric:tabular-nums}' +
+ '.st{padding:8px 12px;border-radius:8px;font-weight:700}' +
+ 'main{padding:18px 22px}.meta{color:#9fdcf0;font-weight:700;letter-spacing:.05em;text-transform:uppercase;font-size:14px}' +
+ '.en p{font-size:26px;line-height:1.45;margin:10px 0;font-weight:600}.nl p{font-size:17px;line-height:1.45;color:#b8c4e6;font-style:italic;margin:6px 0}' +
+ '.xt{color:#7fe0f5;margin-top:10px}.tp{color:#ffd27a;margin-top:10px}.nx{margin-top:16px;padding:12px 16px;border-radius:12px;background:#0a2f95}' +
+ 'button{font:700 18px Barlow,Arial;padding:12px 18px;border-radius:10px;border:0;background:#00b4dc;color:#001e78;cursor:pointer;margin-left:6px}' +
+ '.warn{margin-top:16px;color:#ff9c9c;font-weight:700;font-size:14px}</style></head><body>' +
+ '<header><div><div class="meta" id="pm"></div><div class="clock" id="pc">0:00</div></div><div><span class="st" id="ps"></span>' +
+ '<button id="pp">◀ Vorige</button><button id="pn">Volgende ▶</button><button id="pt">⏯ Tijd</button><button id="pr">↺</button></div></header>' +
+ '<main><div class="en" id="pe"></div><div class="nl" id="pl"></div><div class="xt" id="px"></div><div class="tp" id="pi"></div><div class="nx" id="pnx"></div>' +
+ '<div class="warn">Alleen om te oefenen – tijdens het examen mag je max. 10 steekwoorden gebruiken.</div></main></body></html>';
+function openPresenter(){
+  if (pw && !pw.closed) { pw.focus(); return; }
+  pw = window.open('', 'aldi-presenter', 'width=1000,height=760');
+  if (!pw) { alert('Pop-up geblokkeerd. Sta pop-ups toe, of gebruik N voor de spreektekst.'); return; }
+  pw.document.open(); pw.document.write(PRESENTER); pw.document.close();
+  pw.document.addEventListener('keydown', handleKey);
+  const $ = id => pw.document.getElementById(id);
+  $('pp').onclick = prev; $('pn').onclick = next;
+  $('pt').onclick = () => { timer.toggle(); tickClock(); };
+  $('pr').onclick = () => { timer.reset(); tickClock(); };
+  syncPresenter();
+}
+function syncPresenter(){
+  if (!pw || pw.closed) return;
+  const d = SCRIPT[cur], $ = id => pw.document.getElementById(id);
+  if (!$('pe')) return;
+  $('pm').textContent = 'Slide ' + (cur+1) + '/' + N + ' · ' + d.t + ' · ' + d.p + ' · doel ± ' + d.sec + ' sec · nu rond ' + fmt(targetAt(cur));
+  $('pe').innerHTML = d.en.map(p => '<p>' + esc(p) + '</p>').join('');
+  $('pl').innerHTML = d.nl.map(p => '<p>' + esc(p) + '</p>').join('');
+  $('px').textContent = d.extra ? 'EXTRA zin (als je onder 4:30 zit): ' + d.extra : '';
+  $('pi').textContent = 'Tip: ' + d.tip;
+  $('pnx').textContent = cur < N-1 ? 'Volgende slide: ' + SCRIPT[cur+1].t : 'Laatste slide – daarna vragen uit het publiek.';
+  tickClock();
+}
+function tickClock(){
+  const ms = timer.ms(), [col, label] = state(ms), txt = fmt(ms) + ' / doel ' + fmt(total);
+  notes.querySelectorAll('[data-clock]').forEach(e => e.textContent = txt);
+  notes.querySelectorAll('[data-state]').forEach(e => { e.textContent = label; e.style.background = col; });
+  if (pw && !pw.closed && pw.document.getElementById('pc')) {
+    pw.document.getElementById('pc').textContent = txt;
+    const st = pw.document.getElementById('ps'); st.textContent = label; st.style.background = col;
+  }
+}
+setInterval(tickClock, 250);
+
+/* ============ overview (O) + help (H) ============ */
+const ov = document.getElementById('overview'), help = document.getElementById('help');
+ov.querySelector('.grid').innerHTML = SCRIPT.map((d, i) => '<button data-i="' + i + '"><small>' + String(i+1).padStart(2,'0') + '</small>' + esc(d.t) + '</button>').join('');
+ov.addEventListener('click', e => { const b = e.target.closest('button'); if (b) { ov.classList.remove('show'); go(+b.dataset.i); } });
+function markOverview(){ ov.querySelectorAll('button').forEach((b, i) => b.classList.toggle('cur', i === cur)); }
+help.addEventListener('click', e => { if (e.target === help) help.classList.remove('show'); });
+
+/* ============ input ============ */
+const hint = document.getElementById('hint');
+let hintTimer = setTimeout(() => hint.classList.add('hide'), 8000);
+function hideHint(){ clearTimeout(hintTimer); hint.classList.add('hide'); }
+function fullscreen(){
+  if (document.fullscreenElement) document.exitFullscreen?.();
+  else document.documentElement.requestFullscreen?.().catch(() => {});
+}
+function handleKey(e){
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  const k = e.key;
+  hideHint();
+  if (k === 'Escape') { notes.classList.remove('show'); ov.classList.remove('show'); help.classList.remove('show'); return; }
+  if (ov.classList.contains('show') || help.classList.contains('show')) { if (k === 'o' || k === 'O' || k === 'h' || k === 'H' || k === '?') { ov.classList.remove('show'); help.classList.remove('show'); } return; }
+  switch (k) {
+    case 'ArrowRight': case 'ArrowDown': case 'PageDown': case ' ': case 'Enter': e.preventDefault(); next(); break;
+    case 'ArrowLeft': case 'ArrowUp': case 'PageUp': case 'Backspace': e.preventDefault(); prev(); break;
+    case 'Home': go(0); break;
+    case 'End': go(N-1); break;
+    case 'f': case 'F': fullscreen(); break;
+    case 'n': case 'N': notes.classList.toggle('show'); renderNotes(); break;
+    case 'p': case 'P': openPresenter(); break;
+    case 't': case 'T': timer.toggle(); tickClock(); break;
+    case 'r': case 'R': timer.reset(); tickClock(); break;
+    case 'o': case 'O': ov.classList.add('show'); markOverview(); break;
+    case 'h': case 'H': case '?': help.classList.add('show'); break;
+  }
+}
+addEventListener('keydown', handleKey);
+document.addEventListener('click', e => {
+  if (e.target.closest('#notes,#overview,#help,#hint')) return;
+  hideHint();
+  if (e.clientX < innerWidth * 0.2) prev(); else next();
+});
+let tx = null, ty = null;
+document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; ty = e.touches[0].clientY; }, {passive:true});
+document.addEventListener('touchend', e => {
+  if (tx === null) return;
+  const dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty;
+  if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) { e.preventDefault(); dx < 0 ? next() : prev(); }
+  tx = ty = null;
+}, {passive:false});
+// hide the mouse pointer after 2.5 s without movement
+let idleT; addEventListener('mousemove', () => { document.body.classList.remove('idle'); clearTimeout(idleT); idleT = setTimeout(() => document.body.classList.add('idle'), 2500); });
+
+/* ============ start ============ */
+const startAt = Math.max(0, Math.min(N-1, (parseInt(location.hash.slice(1), 10) || 1) - 1));
+activate(startAt);
+if (startAt === 0) timer.reset();
+})();
+</script>
+</body>
+</html>

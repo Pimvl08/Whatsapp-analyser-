@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spreektekst ALDI-presentatie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#001e78;--navy-2:#0a2f95;--blue:#00b4dc;--blue-soft:#e3f6fb;--red:#c80000;--ink:#0a1a4f;--muted:#5a6a93;--mist:#eef4fb;--line:#d6e2f0;--ok:#1a9e4b;--bg:#f6f9fd;--card:#fff;
+--cond:"Barlow Condensed","Arial Narrow",Arial,sans-serif;--sans:"Barlow","Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 17px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:var(--navy-2)}
+.bar{position:sticky;top:0;z-index:10;background:var(--navy);color:#fff;border-bottom:5px solid var(--blue)}
+.bar .in{max-width:900px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.bar svg.logo{width:34px;height:36px;flex:none}
+.bar b{font:800 22px/1 var(--cond);letter-spacing:.02em;margin-right:auto}
+.sw{display:flex;align-items:center;gap:6px}
+.sw .clock{font:800 26px/1 var(--cond);font-variant-numeric:tabular-nums;background:#fff;color:var(--navy);padding:5px 10px 4px;border-radius:8px;min-width:76px;text-align:center}
+.sw .clock.good{background:#d8f5e3;color:#0b6b30}.sw .clock.warn{background:#ffe9cc;color:#8a4b00}.sw .clock.bad{background:#ffd9d9;color:#8a0000}
+.btn{font:700 15px/1 var(--sans);border:0;border-radius:9px;padding:9px 12px;background:var(--blue);color:var(--navy);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btn.ghost{background:rgba(255,255,255,.14);color:#fff}
+main{max-width:900px;margin:0 auto;padding:22px 16px 60px}
+.hero{background:var(--navy);color:#fff;border-radius:20px;padding:26px 24px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-40px;top:-30px;bottom:-30px;width:220px;background:repeating-linear-gradient(90deg,var(--blue) 0 26px,transparent 26px 44px,var(--navy-2) 44px 90px,transparent 90px 100px);transform:skewX(-24deg);opacity:.85}
+.hero h1{margin:0 0 6px;font:800 clamp(30px,6vw,44px)/1 var(--cond);position:relative;z-index:1;max-width:80%}
+.hero p{margin:0;color:#b9e9f6;position:relative;z-index:1;max-width:78%}
+h2{font:800 32px/1.05 var(--cond);color:var(--navy);margin:40px 0 12px;display:flex;align-items:center;gap:10px}
+h2 .n{display:inline-grid;place-items:center;width:38px;height:38px;border-radius:10px;background:var(--blue);color:#fff;font-size:22px;flex:none}
+.card{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:18px 20px;margin:12px 0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.stat{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:14px 16px}
+.stat b{display:block;font:800 34px/1 var(--cond);color:var(--navy)}
+.stat span{color:var(--muted);font-weight:600;font-size:15px}
+table{width:100%;border-collapse:collapse}
+td,th{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:700 13px/1.2 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+td.k{font-weight:800;color:var(--navy);white-space:nowrap}
+.ok{color:var(--ok);font-weight:800}
+ul.tips{margin:0;padding-left:20px}ul.tips li{margin:6px 0}
+.sl{background:var(--card);border:2px solid var(--line);border-radius:18px;margin:16px 0;overflow:hidden}
+.sl header{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--mist);border-bottom:2px solid var(--line);flex-wrap:wrap}
+.sl .no{font:800 30px/1 var(--cond);color:#fff;background:var(--navy);border-radius:10px;padding:8px 10px 6px;min-width:52px;text-align:center}
+.sl .h{flex:1;min-width:180px}
+.sl h3{margin:0;font:800 26px/1.05 var(--cond);color:var(--navy)}
+.sl .pt{display:block;font-weight:700;font-size:14px;color:#0089a8;margin-top:2px}
+.sl .time{font-weight:800;color:var(--navy);background:#fff;border:2px solid var(--line);padding:5px 10px;border-radius:9px;font-size:15px}
+.sl .time small{font-weight:600;color:var(--muted)}
+.en,.nl,.extra{display:flex;gap:12px;padding:14px 18px 0}
+.en p{margin:0 0 8px;font:600 20px/1.5 var(--sans);color:var(--navy)}
+.nl p{margin:0 0 6px;color:#53628a;font-style:italic;font-size:16px}
+.nl .lbl{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font:800 13px/1 var(--sans);background:#ffeaea;color:var(--red)}
+.extra{font-size:16px;color:#006c86}
+.tip{margin:10px 18px 16px;padding:10px 14px;border-radius:10px;background:#fff6e5;color:#7a4a00;font-size:15px}
+.say{flex:none;width:38px;height:38px;border-radius:50%;border:0;background:var(--blue);color:var(--navy);cursor:pointer;display:grid;place-items:center;padding:0}
+.say svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.say.on{background:var(--navy);color:#fff}
+.qa{border-top:1px solid var(--line);padding:12px 0;display:flex;gap:12px}
+.qa:first-child{border-top:0}
+.qa .q{font-weight:800;color:var(--navy)}
+.qa .a{font-weight:600;color:var(--ink);margin-top:2px}
+.qa .t{font-size:15px;color:#53628a;font-style:italic}
+.pron{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px}
+.pron div{display:flex;align-items:center;gap:10px;background:var(--card);border:2px solid var(--line);border-radius:12px;padding:8px 10px}
+.pron b{color:var(--navy)}.pron span{color:var(--muted);font-size:15px}
+.pron .say{width:32px;height:32px}
+.wrong{color:var(--red);text-decoration:line-through;text-decoration-thickness:2px}
+.right{color:var(--ok);font-weight:700}
+.kwcard{background:#fff;border:3px dashed #9aa8c2;border-radius:16px;padding:18px 20px;max-width:430px}
+.kwcard h4{margin:0 0 10px;font:800 22px/1 var(--cond);color:var(--navy)}
+.kwcard ol{margin:0;padding-left:28px;font:800 26px/1.45 var(--cond);color:var(--navy)}
+.kwcard ol small{font:600 13px/1 var(--sans);color:var(--muted);margin-left:8px;letter-spacing:.02em}
+.warn{background:#fdecec;color:#8a0000;border-radius:12px;padding:12px 16px;font-weight:700}
+.plan li{margin:8px 0}
+.keys td:first-child{white-space:nowrap}
+kbd{display:inline-block;min-width:26px;text-align:center;font:700 13px/1 ui-monospace,Consolas,monospace;background:var(--mist);border:2px solid var(--line);border-bottom-width:4px;border-radius:7px;padding:4px 6px}
+nav.toc{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0}
+nav.toc a{font-weight:700;font-size:14px;text-decoration:none;background:#fff;border:2px solid var(--line);border-radius:30px;padding:6px 12px;color:var(--navy)}
+footer.f{max-width:900px;margin:0 auto;padding:0 16px 40px;color:var(--muted);font-size:13px}
+@media print{
+  .bar,.say,nav.toc,.noprint{display:none!important}
+  body{background:#fff;font-size:12pt}
+  main{max-width:none;padding:0}
+  .sl,.card,.qa{break-inside:avoid}
+  .hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #kaart{break-before:page}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="aldi" viewBox="0 0 283.5 297.6">
+    <path fill="#fff" d="M 272.1,286.3 H 11.3 v -275 h 260.8 z"/>
+    <path fill="#c80000" d="M 283.5,297.6 283.5,0 0,0 l 0,297.6 283.5,0 0,0 z m -11.4,-11.3 -260.8,0 0,-275 260.8,0 0,275 0,0 z"/>
+    <polygon fill="#001e78" points="258,212.6 258,272.1 25.5,272.1 25.5,212.6"/>
+    <path fill="#fff" d="m 236.7,265 0,-45.4 -20.4,0 0,45.4 20.4,0 0,0 z m -25,-22.6 c 0,-12.5 -10.1,-22.7 -22.5,-22.7 l -30.1,0 0,45.3 30.1,0 c 12.4,0 22.5,-10.1 22.5,-22.6 l 0,0 z m -18.7,0 c 0,5.4 -4.1,9.9 -9.2,9.9 l -4.4,0 0,-19.7 4.4,0 c 5.1,-0.1 9.2,4.3 9.2,9.8 l 0,0 z m -76.4,22.6 38.5,0 0,-13.1 -17.8,0 0,-32.3 -20.7,0 0,45.4 0,0 z m -23.2,0 20.6,0 -23.2,-45.4 -20.8,0 -23.2,45.4 20.6,0 2.2,-4.8 21.7,0 2.1,4.8 0,0 z m -8.3,-16.7 -9.5,0 4.6,-10.1 4.9,10.1 0,0 z"/>
+    <use href="#aldi-a"/>
+  </symbol>
+  <!-- the striped "A" only -->
+  <symbol id="aldi-a" viewBox="0 0 283.5 297.6">
+    <path fill="#00b4dc" d="m 220.5,206.9 c 3.1,-5.8 4.8,-11.8 4.7,-18.6 -0.1,-7.6 -3.3,-12.5 -7.6,-19 l -63,-94.6 10.2,-15.5 70.1,104.8 c 5.8,8.6 9.1,15.1 9.3,24.7 0.1,5.6 -1.6,12.6 -4.2,18.1 l -19.5,0 0,0.1 z"/>
+    <path fill="#001e78" d="m 242.9,206.9 c 0.5,-1.1 0.8,-1.8 1.2,-2.8 1.5,-4 3.4,-9.5 3.2,-15.3 -0.2,-10.1 -3.7,-16.8 -9.6,-25.5 l -71.2,-106.4 8.2,-12.4 77.5,116.2 c 6.8,10.2 10,16.2 10,25.6 0,10.8 -2.9,15.6 -5.1,20.5 l -14.2,0 0,0.1 z"/>
+    <path fill="#001e78" d="m 199.4,206.9 c 4.2,-4.4 7.2,-11.5 6.8,-19 -0.3,-6.4 -4.3,-12.7 -8.9,-19.7 l -52.5,-78.7 8,-12.1 61.9,92.9 c 4.3,6.5 7.2,11 7.3,18.1 0.1,6.7 -1.6,12.7 -4.9,18.5 l -17.7,0 0,0 z"/>
+    <path fill="#001e78" d="M 120.8,25.5 31.3,160.8 c -6.8,10.2 -10,16.2 -10,25.6 0,10.8 2.9,15.6 5.1,20.5 l 14.3,0 c -0.4,-0.8 -0.8,-1.8 -1.2,-2.9 -1.5,-4 -3,-9.5 -2.9,-15.2 0.2,-10.1 3.7,-16.8 9.6,-25.5 l 91.5,-137.8 -16.9,0 0,0 z"/>
+    <path fill="#00b4dc" d="M 140.7,25.5 48.6,164.2 c -5.8,8.6 -9.1,15.1 -9.3,24.7 -0.1,5.6 1.6,12.6 4.2,18.1 l 19.5,0 c -3.1,-5.8 -4.8,-11.8 -4.7,-18.6 0.1,-7.6 3.3,-12.5 7.6,-19 l 95.2,-143.9 -20.4,0 0,0 z"/>
+    <path fill="#00b4dc" d="m 83.2,172.9 111.4,0 -7.6,-11.4 -96.3,0 -4.5,6.7 c -1,1.5 -2.1,3.2 -3,4.7 l 0,0 z"/>
+    <path fill="#001e78" d="M 164.2,25.5 68.4,170.3 c -4.3,6.5 -7.2,11 -7.3,18.1 -0.1,6.7 1.6,12.7 4.9,18.5 l 18.1,0 c -4.2,-4.4 -7.2,-11.5 -6.8,-19 0.1,-1.5 0.4,-3.5 0.8,-5 l 121.9,0 c -0.8,-2.4 -1.6,-4.4 -3.7,-7.2 l -114.8,0 c 1.3,-2.3 3.1,-5.1 4.7,-7.5 l 6.3,-9.4 92.7,0 -5.1,-7.6 -82.5,0 83.1,-125.6 -16.5,0 0,-0.1 z"/>
+  </symbol></defs></svg>
+<div class="bar"><div class="in">
+  <svg class="logo"><use href="#aldi"/></svg>
+  <b>Spreektekst · ALDI</b>
+  <div class="sw" title="Stopwatch om te oefenen"><span class="clock" id="clock">0:00</span><button class="btn" id="go">Start</button><button class="btn ghost" id="rs">↺</button></div>
+  <a class="btn ghost" href="presentatie.html" target="_blank" rel="noopener">Open presentatie ↗</a>
+</div></div>
+
+<main>
+  <section class="hero">
+    <h1>Je presentatie: “My part-time job at ALDI”</h1>
+    <p>Engels spreken A2 · Pim van Leeuwen · 12 slides · ± 555 woorden · doel ± 4:56 min (toegestaan: 4–6 min)</p>
+  </section>
+  <nav class="toc">
+    <a href="#tien">Zo haal je een 10</a><a href="#tekst">Spreektekst per slide</a><a href="#kaart">Spiekbriefje (10 woorden)</a><a href="#vragen">Vragen uit het publiek</a><a href="#nood">Noodzinnen</a><a href="#fouten">Fouten vermijden</a><a href="#uitspraak">Uitspraak</a><a href="#plan">Oefenplan vandaag</a><a href="#bediening">Bediening</a>
+  </nav>
+
+  <h2 id="tien"><span class="n">10</span>Zo haal je een 10</h2>
+  <div class="card">
+    <b>Alle 7 punten uit de opdracht zitten erin:</b>
+    <table>
+      <tr><th>#</th><th>Opdracht zegt</th><th>Waar in je presentatie</th><th></th></tr>
+      <tr><td class="k">1</td><td>Stel jezelf voor</td><td>Slide 2 – About me</td><td class="ok">✓</td></tr><tr><td class="k">2</td><td>Vertel waar je werkt</td><td>Slide 4 – Where I work (Aarle-Rixtel)</td><td class="ok">✓</td></tr><tr><td class="k">3</td><td>Korte beschrijving van het bedrijf</td><td>Slide 5 – What is ALDI?</td><td class="ok">✓</td></tr><tr><td class="k">4</td><td>Wanneer en hoelang</td><td>Slide 6 – When did I start? (herfst 2025, 1 jaar)</td><td class="ok">✓</td></tr><tr><td class="k">5</td><td>Op welke dagen</td><td>Slide 7 – My working days (do, za, zo)</td><td class="ok">✓</td></tr><tr><td class="k">6</td><td>Wat je doet + hoe je het aanpakt</td><td>Slide 8, 9 en 10 – deputy store manager + 4 taken, steeds met &quot;How I do it&quot;</td><td class="ok">✓</td></tr><tr><td class="k">7</td><td>Wat je ervan vindt</td><td>Slide 11 – What do I think? (+ / – / 8 uit 10)</td><td class="ok">✓</td></tr>
+    </table>
+  </div>
+  <div class="grid2">
+    <div class="stat"><b>4:00 – 6:00</b><span>verplichte spreektijd. Mik op ± 5:00.</span></div>
+    <div class="stat"><b>10 steekwoorden</b><span>meer mag je niet meenemen. Zie het spiekbriefje.</span></div>
+    <div class="stat"><b>Vragen na afloop</b><span>tellen niet mee voor de spreektijd, maar wel voor je cijfer.</span></div>
+  </div>
+  <div class="card">
+    <b>Waar let de examinator op? Zo scoor je overal punten:</b>
+    <ul class="tips">
+      <li><b>Inhoud:</b> noem alle 7 punten. Bij punt 6 vertel je steeds <i>wat</i> je doet én <i>hoe</i> je het aanpakt (de blauwe vakjes “How I do it”).</li>
+      <li><b>Opbouw:</b> gebruik signaalwoorden: <i>First, Then, After that, Finally, Because, But, So, For example, All in all</i>. Ze staan al in je tekst.</li>
+      <li><b>Woordenschat:</b> laat werkwoorden zien als <i>in charge, responsible, divide the tasks, check the delivery</i>.</li>
+      <li><b>Grammatica:</b> wissel tijden af: <i>I work</i> (nu), <i>I started</i> (verleden), <i>I have worked</i> (sinds). Zie “Fouten vermijden”.</li>
+      <li><b>Uitspraak en tempo:</b> praat rustig. Neem een korte pauze bij elke nieuwe slide (de ALDI-overgang geeft je die pauze vanzelf).</li>
+      <li><b>Contact:</b> kijk de klas aan, niet het scherm. Lees niet voor; de slides zijn je geheugensteun.</li>
+      <li><b>Mening:</b> geef een plus én een min (“But sometimes…”) en sluit af met een cijfer. Dat laat zien dat je kunt nuanceren.</li>
+      <li><b>Vragen:</b> antwoord in een hele zin en geef een reden met <i>because</i>.</li>
+    </ul>
+  </div>
+
+  <h2 id="tekst"><span class="n">🗣</span>Spreektekst per slide</h2>
+  <p class="noprint">Klik op de blauwe luidspreker om de Engelse tekst te horen (werkt in Chrome, Edge en Safari). Gebruik de stopwatch bovenin om te oefenen.</p>
+  
+  <article class="sl" id="slide-1">
+    <header>
+      <span class="no">01</span>
+      <div class="h"><h3>Title</h3><span class="pt">Opening</span></div>
+      <span class="time" title="Doeltijd voor deze slide">± 12 sec <small>(start ± 0:00)</small></span>
+    </header>
+    <div class="en"><button class="say" data-say="Hello everyone, and welcome to my presentation. Today I am going to tell you about my part-time job at ALDI." title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><div><p>Hello everyone, and welcome to my presentation. Today I am going to tell you about my part-time job at ALDI.</p></div></div>
+    <div class="nl"><span class="lbl">NL</span><div><p>Hallo allemaal, en welkom bij mijn presentatie. Vandaag ga ik jullie vertellen over mijn bijbaan bij ALDI.</p></div></div>
+    
+    <div class="tip"><b>Tip:</b> Kijk het publiek aan en glimlach. Wacht twee seconden en begin dan pas te praten.</div>
+  </article>
+  <article class="sl" id="slide-2">
+    <header>
+      <span class="no">02</span>
+      <div class="h"><h3>About me</h3><span class="pt">Punt 1 – Stel jezelf voor</span></div>
+      <span class="time" title="Doeltijd voor deze slide">± 22 sec <small>(start ± 0:12)</small></span>
+    </header>
+    <div class="en"><button class="say" data-say="First, let me introduce myself. My name is Pim van Leeuwen, and I am eighteen years old. I am a student, and next to my studies I work at ALDI. I am a deputy store manager there." title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><div><p>First, let me introduce myself. My name is Pim van Leeuwen, and I am eighteen years old. I am a student, and next to my studies I work at ALDI. I am a deputy store manager there.</p></div></div>
+    <div class="nl"><span class="lbl">NL</span><div><p>Eerst stel ik mezelf even voor. Mijn naam is Pim van Leeuwen en ik ben achttien jaar oud. Ik ben student, en naast mijn studie werk ik bij ALDI. Ik ben daar vervangend filiaalmanager.</p></div></div>
+    
+    <div class="tip"><b>Tip:</b> Zeg 'I am eighteen years old', níet 'I have eighteen years'.</div>
+  </article>
+  <article class="sl" id="slide-3">
+    <header>
+      <span class="no">03</span>
+      <div class="h"><h3>Today's shopping list</h3><span class="pt">Opbouw (agenda)</span></div>
+      <span class="time" title="Doeltijd voor deze slide">± 18 sec <small>(start ± 0:34)</small></span>
+    </header>
+    <div class="en"><button class="say" data-say="This is my shopping list for today. First, I will tell you where I work and what ALDI is. Then I will tell you when I work and what I do. Finally, I will tell you what I think of my job." title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><div><p>This is my shopping list for today. First, I will tell you where I work and what ALDI is. Then I will tell you when I work and what I do. Finally, I will tell you what I think of my job.</p></div></div>
+    <div class="nl"><span class="lbl">NL</span><div><p>Dit is mijn boodschappenlijstje voor vandaag. Eerst vertel ik waar ik werk en wat ALDI is. Daarna vertel ik wanneer ik werk en wat ik doe. Tot slot vertel ik wat ik van mijn baan vind.</p></div></div>
+    
+    <div class="tip"><b>Tip:</b> Dit is je agenda. Een duidelijke opbouw (First – Then – Finally) levert punten op voor samenhang.</div>
+  </article>
+  <article class="sl" id="slide-4">
+    <header>
+      <span class="no">04</span>
+      <div class="h"><h3>Where I work</h3><span class="pt">Punt 2 – Waar je werkt</span></div>
+      <span class="time" title="Doeltijd voor deze slide">± 18 sec <small>(start ± 0:52)</small></span>
+    </header>
+    <div class="en"><button class="say" data-say="I work at the ALDI in Aarle-Rixtel. Aarle-Rixtel is a small village in the south of the Netherlands, in the province of North Brabant. It is close to Helmond and Eindhoven." title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><div><p>I work at the ALDI in Aarle-Rixtel. Aarle-Rixtel is a small village in the south of the Netherlands, in the province of North Brabant. It is close to Helmond and Eindhoven.</p></div></div>
+    <div class="nl"><span class="lbl">NL</span><div><p>Ik werk bij de ALDI in Aarle-Rixtel. Aarle-Rixtel is een klein dorp in het zuiden van Nederland, in de provincie Noord-Brabant. Het ligt dicht bij Helmond en Eindhoven.</p></div></div>
+    
+    <div class="tip"><b>Tip:</b> Wijs naar het kaartje als je 'close to Helmond and Eindhoven' zegt.</div>
+  </article>
+  <article class="sl" id="slide-5">
+    <header>
+      <span class="no">05</span>
+      <div class="h"><h3>What is ALDI?</h3><span class="pt">Punt 3 – Beschrijving van het bedrijf</span></div>
+      <span class="time" title="Doeltijd voor deze slide">± 40 sec <small>(start ± 1:10)</small></span>
+    </header>
+    <div class="en"><button class="say" data-say="ALDI is a supermarket from Germany. The name comes from Albrecht Discount. The Albrecht brothers started the company in 1946. ALDI is a discount supermarket, so the prices are low. It sells mostly its own brands, and every week there are special offers, like clothes and tools. ALDI came to the Netherlands in 1973. Now there are almost 500 stores in the Netherlands, and more than 10,000 in the world." title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><div><p>ALDI is a supermarket from Germany. The name comes from Albrecht Discount. The Albrecht brothers started the company in 1946.</p><p>ALDI is a discount supermarket, so the prices are low. It sells mostly its own brands, and every week there are special offers, like clothes and tools.</p><p>ALDI came to the Netherlands in 1973. Now there are almost 500 stores in the Netherlands, and more than 10,000 in the world.</p></div></div>
+    <div class="nl"><span class="lbl">NL</span><div><p>ALDI is een supermarkt uit Duitsland. De naam komt van Albrecht Discount. De broers Albrecht zijn het bedrijf in 1946 begonnen.</p><p>ALDI is een discountsupermarkt, dus de prijzen zijn laag. ALDI verkoopt vooral eigen merken, en elke week zijn er speciale aanbiedingen, zoals kleding en gereedschap.</p><p>ALDI kwam in 1973 naar Nederland. Nu zijn er bijna 500 winkels in Nederland en meer dan 10.000 in de wereld.</p></div></div>
+    <div class="extra"><button class="say" data-say="There are two ALDI companies: ALDI Nord and ALDI Süd. In the Netherlands we have ALDI Nord." title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><div><b>Extra zin – alleen als je bij het oefenen onder de 4:30 uitkomt:</b><br>There are two ALDI companies: ALDI Nord and ALDI Süd. In the Netherlands we have ALDI Nord.</div></div>
+    <div class="tip"><b>Tip:</b> Getallen: 1946 = nineteen forty-six · 1973 = nineteen seventy-three · 500 = five hundred · 10,000 = ten thousand.</div>
+  </article>
+  <article class="sl" id="slide-6">
+    <header>
+      <span class="no">06</span>
+      <div class="h"><h3>When did I start?</h3><span class="pt">Punt 4 – Wanneer en hoelang</span></div>
+      <span class="time" title="Doeltijd voor deze slide">± 15 sec <small>(start ± 1:50)</small></span>
+    </header>
+    <div class="en"><button class="say" data-say="I started at ALDI one year ago, in the autumn of 2025. So I have worked there for about one year now." title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><div><p>I started at ALDI one year ago, in the autumn of 2025. So I have worked there for about one year now.</p></div></div>
+    <div class="nl"><span class="lbl">NL</span><div><p>Ik ben een jaar geleden bij ALDI begonnen, in de herfst van 2025. Ik werk daar nu dus ongeveer een jaar.</p></div></div>
+    
+    <div class="tip"><b>Tip:</b> Zeg 'I have worked there for one year'. Níet 'I work there since one year' – dat is een typische Nederlandse fout. 2025 = twenty twenty-five.</div>
+  </article>
+  <article class="sl" id="slide-7">
+    <header>
+      <span class="no">07</span>
+      <div class="h"><h3>My working days</h3><span class="pt">Punt 5 – Op welke dagen</span></div>
+      <span class="time" title="Doeltijd voor deze slide">± 22 sec <small>(start ± 2:05)</small></span>
+    </header>
+    <div class="en"><button class="say" data-say="I work about three days a week, mostly on Thursday, Saturday and Sunday. Saturday is the busiest day, because many people do their shopping for the weekend. Sometimes I start early in the morning, and sometimes I work until the store closes." title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><div><p>I work about three days a week, mostly on Thursday, Saturday and Sunday. Saturday is the busiest day, because many people do their shopping for the weekend. Sometimes I start early in the morning, and sometimes I work until the store closes.</p></div></div>
+    <div class="nl"><span class="lbl">NL</span><div><p>Ik werk ongeveer drie dagen per week, meestal op donderdag, zaterdag en zondag. Zaterdag is de drukste dag, omdat veel mensen dan boodschappen doen voor het weekend. Soms begin ik vroeg in de ochtend, en soms werk ik tot de winkel dichtgaat.</p></div></div>
+    
+    <div class="tip"><b>Tip:</b> Dagen altijd met 'on': on Thursday. Bij 'Thursday' zet je je tong tussen je tanden (th).</div>
+  </article>
+  <article class="sl" id="slide-8">
+    <header>
+      <span class="no">08</span>
+      <div class="h"><h3>My job: deputy store manager</h3><span class="pt">Punt 6 – Wat je doet (inleiding)</span></div>
+      <span class="time" title="Doeltijd voor deze slide">± 18 sec <small>(start ± 2:27)</small></span>
+    </header>
+    <div class="en"><button class="say" data-say="As a deputy store manager, I am in charge when the store manager is not there. I am responsible for the team, the money and the products. I have four main tasks." title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><div><p>As a deputy store manager, I am in charge when the store manager is not there. I am responsible for the team, the money and the products. I have four main tasks.</p></div></div>
+    <div class="nl"><span class="lbl">NL</span><div><p>Als vervangend filiaalmanager heb ik de leiding als de filiaalmanager er niet is. Ik ben verantwoordelijk voor het team, het geld en de producten. Ik heb vier hoofdtaken.</p></div></div>
+    
+    <div class="tip"><b>Tip:</b> 'in charge' = de leiding hebben. 'responsible' spreek je uit als rie-SPON-sie-bul.</div>
+  </article>
+  <article class="sl" id="slide-9">
+    <header>
+      <span class="no">09</span>
+      <div class="h"><h3>My tasks (1)</h3><span class="pt">Punt 6 – Wat je doet + hoe je het aanpakt</span></div>
+      <span class="time" title="Doeltijd voor deze slide">± 42 sec <small>(start ± 2:45)</small></span>
+    </header>
+    <div class="en"><button class="say" data-say="My first task is opening and closing the store. In the morning I turn off the alarm and I prepare the cash registers. In the evening I lock everything. I always use a checklist, so I don't forget anything. My second task is leading the team. Before the shift, I make a plan and I divide the tasks: who works at the checkout and who fills the shelves. When a colleague is sick, I find a solution. For example, I call another colleague." title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><div><p>My first task is opening and closing the store. In the morning I turn off the alarm and I prepare the cash registers. In the evening I lock everything. I always use a checklist, so I don't forget anything.</p><p>My second task is leading the team. Before the shift, I make a plan and I divide the tasks: who works at the checkout and who fills the shelves. When a colleague is sick, I find a solution. For example, I call another colleague.</p></div></div>
+    <div class="nl"><span class="lbl">NL</span><div><p>Mijn eerste taak is de winkel openen en sluiten. 's Ochtends zet ik het alarm uit en maak ik de kassa's klaar. 's Avonds sluit ik alles af. Ik gebruik altijd een checklist, zodat ik niets vergeet.</p><p>Mijn tweede taak is het team aansturen. Voor de dienst maak ik een planning en verdeel ik de taken: wie op de kassa werkt en wie de schappen vult. Als een collega ziek is, zoek ik een oplossing. Ik bel bijvoorbeeld een andere collega.</p></div></div>
+    <div class="extra"><button class="say" data-say="When it is very busy, I also help at the checkout myself." title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><div><b>Extra zin – alleen als je bij het oefenen onder de 4:30 uitkomt:</b><br>When it is very busy, I also help at the checkout myself.</div></div>
+    <div class="tip"><b>Tip:</b> Punt 6 vraagt ook HOE je het aanpakt. Zeg dus steeds hoe: checklist, planning, oplossing.</div>
+  </article>
+  <article class="sl" id="slide-10">
+    <header>
+      <span class="no">10</span>
+      <div class="h"><h3>My tasks (2)</h3><span class="pt">Punt 6 – Wat je doet + hoe je het aanpakt</span></div>
+      <span class="time" title="Doeltijd voor deze slide">± 42 sec <small>(start ± 3:27)</small></span>
+    </header>
+    <div class="en"><button class="say" data-say="My third task is the cash registers and the safe. At the end of the day I count the money and I put it in the safe. I work very carefully, and I check everything twice. My fourth task is deliveries and fresh products. A truck brings new products, and I check the delivery. I also check the dates on products like milk and meat. Products that are almost out of date get a discount sticker. We put the oldest products in the front: first in, first out." title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><div><p>My third task is the cash registers and the safe. At the end of the day I count the money and I put it in the safe. I work very carefully, and I check everything twice.</p><p>My fourth task is deliveries and fresh products. A truck brings new products, and I check the delivery. I also check the dates on products like milk and meat. Products that are almost out of date get a discount sticker. We put the oldest products in the front: first in, first out.</p></div></div>
+    <div class="nl"><span class="lbl">NL</span><div><p>Mijn derde taak zijn de kassa's en de kluis. Aan het eind van de dag tel ik het geld en leg ik het in de kluis. Ik werk heel zorgvuldig en ik controleer alles twee keer.</p><p>Mijn vierde taak zijn leveringen en verse producten. Een vrachtwagen brengt nieuwe producten en ik controleer de levering. Ik controleer ook de datums op producten zoals melk en vlees. Producten die bijna over de datum zijn, krijgen een kortingssticker. We zetten de oudste producten vooraan: wat het eerst binnenkomt, gaat er ook het eerst uit.</p></div></div>
+    
+    <div class="tip"><b>Tip:</b> 'safe' = kluis (spreek uit: seef). 'checkout' = kassa. 'shelves' = schappen.</div>
+  </article>
+  <article class="sl" id="slide-11">
+    <header>
+      <span class="no">11</span>
+      <div class="h"><h3>What do I think?</h3><span class="pt">Punt 7 – Wat je ervan vindt</span></div>
+      <span class="time" title="Doeltijd voor deze slide">± 35 sec <small>(start ± 4:09)</small></span>
+    </header>
+    <div class="en"><button class="say" data-say="What do I think of my job? I learned a lot at ALDI: to take responsibility, to lead a team and to solve problems. I also earn good money, and on Sunday I get extra pay. But sometimes it is busy and stressful, for example on a Saturday or when a colleague is sick. All in all, I really like my job. I give it an eight out of ten." title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><div><p>What do I think of my job? I learned a lot at ALDI: to take responsibility, to lead a team and to solve problems. I also earn good money, and on Sunday I get extra pay.</p><p>But sometimes it is busy and stressful, for example on a Saturday or when a colleague is sick. All in all, I really like my job. I give it an eight out of ten.</p></div></div>
+    <div class="nl"><span class="lbl">NL</span><div><p>Wat vind ik van mijn baan? Ik heb veel geleerd bij ALDI: verantwoordelijkheid nemen, een team leiden en problemen oplossen. Ik verdien ook goed, en op zondag krijg ik extra betaald.</p><p>Maar soms is het druk en stressvol, bijvoorbeeld op zaterdag of als een collega ziek is. Al met al vind ik mijn baan echt leuk. Ik geef het een acht uit tien.</p></div></div>
+    
+    <div class="tip"><b>Tip:</b> Een mening met een plus én een min ('But …') laat zien dat je kunt nuanceren. Goed voor je cijfer!</div>
+  </article>
+  <article class="sl" id="slide-12">
+    <header>
+      <span class="no">12</span>
+      <div class="h"><h3>Thank you!</h3><span class="pt">Afsluiting + vragen</span></div>
+      <span class="time" title="Doeltijd voor deze slide">± 12 sec <small>(start ± 4:44)</small></span>
+    </header>
+    <div class="en"><button class="say" data-say="That was my presentation about my job at ALDI. Thank you for listening! Do you have any questions?" title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><div><p>That was my presentation about my job at ALDI. Thank you for listening! Do you have any questions?</p></div></div>
+    <div class="nl"><span class="lbl">NL</span><div><p>Dat was mijn presentatie over mijn baan bij ALDI. Bedankt voor het luisteren! Hebben jullie nog vragen?</p></div></div>
+    
+    <div class="tip"><b>Tip:</b> Blijf rustig staan en kijk de klas in. Luister goed naar de vraag en antwoord in een hele zin.</div>
+  </article>
+
+  <h2 id="kaart"><span class="n">✎</span>Spiekbriefje: 10 steekwoorden</h2>
+  <p>Schrijf deze woorden op een kaartje. Meer dan 10 mag niet. Elk woord brengt je bij één stuk van je verhaal:</p>
+  <div class="kwcard">
+    <h4>My part-time job at ALDI</h4>
+    <ol><li>Pim<small>punt 1 – jezelf</small></li><li>Aarle-Rixtel<small>punt 2 – waar</small></li><li>Discount<small>punt 3 – ALDI</small></li><li>2025<small>punt 4 – sinds/hoelang</small></li><li>Thu-Sat-Sun<small>punt 5 – dagen</small></li><li>Checklist<small>punt 6 – taak 1</small></li><li>Team<small>punt 6 – taak 2</small></li><li>Safe<small>punt 6 – taak 3</small></li><li>Delivery<small>punt 6 – taak 4</small></li><li>8/10<small>punt 7 – mening</small></li></ol>
+  </div>
+  <p class="noprint" style="font-size:14px;color:var(--muted)">Zet op je echte kaartje alleen de 10 woorden, zonder de grijze uitleg. Vraag bij twijfel aan je docent of “Thu-Sat-Sun” als één steekwoord telt; zo niet, schrijf dan “Weekend”.</p>
+
+  <h2 id="vragen"><span class="n">?</span>Vragen uit het publiek</h2>
+  <div class="card">
+    <div class="qa"><button class="say" data-say="Why did you choose ALDI? ... Because the store is close to my home, and I wanted to earn my own money." title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><div><div class="q">Why did you choose ALDI?</div><div class="a">Because the store is close to my home, and I wanted to earn my own money.</div><div class="t">Omdat de winkel dicht bij huis is en ik mijn eigen geld wilde verdienen. (Is jouw reden anders? Zeg dan je eigen reden.)</div></div></div><div class="qa"><button class="say" data-say="How did you become a deputy store manager? ... I worked hard, and my manager trusted me. So I got more responsibility." title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><div><div class="q">How did you become a deputy store manager?</div><div class="a">I worked hard, and my manager trusted me. So I got more responsibility.</div><div class="t">Ik werkte hard en mijn manager vertrouwde me. Daardoor kreeg ik meer verantwoordelijkheid.</div></div></div><div class="qa"><button class="say" data-say="What is the most difficult part of your job? ... Busy Saturdays. There are many customers, and everything has to go fast. Then I stay calm, and I help where it is needed." title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><div><div class="q">What is the most difficult part of your job?</div><div class="a">Busy Saturdays. There are many customers, and everything has to go fast. Then I stay calm, and I help where it is needed.</div><div class="t">Drukke zaterdagen. Veel klanten en alles moet snel. Dan blijf ik rustig en help ik waar het nodig is.</div></div></div><div class="qa"><button class="say" data-say="What is your favourite task? ... Leading the team. I like to make a plan and to help my colleagues." title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><div><div class="q">What is your favourite task?</div><div class="a">Leading the team. I like to make a plan and to help my colleagues.</div><div class="t">Het team aansturen. Ik vind het leuk om een planning te maken en mijn collega’s te helpen.</div></div></div><div class="qa"><button class="say" data-say="What do you do when a customer is angry? ... I stay calm and friendly. I listen to the customer, and I try to find a solution." title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><div><div class="q">What do you do when a customer is angry?</div><div class="a">I stay calm and friendly. I listen to the customer, and I try to find a solution.</div><div class="t">Ik blijf rustig en vriendelijk. Ik luister naar de klant en ik probeer een oplossing te vinden.</div></div></div><div class="qa"><button class="say" data-say="What is the difference between ALDI and other supermarkets? ... ALDI is cheaper. It has fewer products, and most products are ALDI’s own brands." title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><div><div class="q">What is the difference between ALDI and other supermarkets?</div><div class="a">ALDI is cheaper. It has fewer products, and most products are ALDI’s own brands.</div><div class="t">ALDI is goedkoper. Er zijn minder producten en de meeste zijn eigen merken van ALDI.</div></div></div><div class="qa"><button class="say" data-say="What did you learn at ALDI? ... I learned to lead a team, to work carefully with money, and to stay calm when it is busy." title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><div><div class="q">What did you learn at ALDI?</div><div class="a">I learned to lead a team, to work carefully with money, and to stay calm when it is busy.</div><div class="t">Ik heb geleerd een team te leiden, zorgvuldig met geld te werken en rustig te blijven als het druk is.</div></div></div><div class="qa"><button class="say" data-say="What happens with products that are almost out of date? ... They get a discount sticker. Then customers buy them, and we don’t waste food." title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><div><div class="q">What happens with products that are almost out of date?</div><div class="a">They get a discount sticker. Then customers buy them, and we don’t waste food.</div><div class="t">Ze krijgen een kortingssticker. Dan kopen klanten ze en verspillen we geen eten.</div></div></div><div class="qa"><button class="say" data-say="Do you want to keep working at ALDI? ... Yes, for now I want to stay, because I like the work and the money is good." title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><div><div class="q">Do you want to keep working at ALDI?</div><div class="a">Yes, for now I want to stay, because I like the work and the money is good.</div><div class="t">Ja, voorlopig wil ik blijven, want ik vind het werk leuk en het verdient goed.</div></div></div><div class="qa"><button class="say" data-say="What do you do with the money you earn? ... I save a big part of it, and I spend some money on going out with friends." title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><div><div class="q">What do you do with the money you earn?</div><div class="a">I save a big part of it, and I spend some money on going out with friends.</div><div class="t">Ik spaar een groot deel en ik geef wat uit aan uitgaan met vrienden. (Pas aan als het anders is.)</div></div></div>
+  </div>
+
+  <h2 id="nood"><span class="n">!</span>Noodzinnen</h2>
+  <div class="card">
+    <div class="qa"><button class="say" data-say="Sorry, could you repeat the question, please?" title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><div><div class="q">Sorry, could you repeat the question, please?</div><div class="t">Sorry, kun je de vraag herhalen?</div></div></div><div class="qa"><button class="say" data-say="Could you speak a bit slower, please?" title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><div><div class="q">Could you speak a bit slower, please?</div><div class="t">Kun je iets langzamer praten?</div></div></div><div class="qa"><button class="say" data-say="That is a good question. Let me think." title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><div><div class="q">That is a good question. Let me think.</div><div class="t">Goede vraag. Even nadenken. (koopt tijd!)</div></div></div><div class="qa"><button class="say" data-say="I don’t know the English word, but I mean …" title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><div><div class="q">I don’t know the English word, but I mean …</div><div class="t">Ik weet het Engelse woord niet, maar ik bedoel …</div></div></div><div class="qa"><button class="say" data-say="Sorry, I mean …" title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><div><div class="q">Sorry, I mean …</div><div class="t">Sorry, ik bedoel … (als je een fout verbetert)</div></div></div><div class="qa"><button class="say" data-say="Do you mean …?" title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><div><div class="q">Do you mean …?</div><div class="t">Bedoel je …?</div></div></div>
+  </div>
+
+  <h2 id="fouten"><span class="n">✗</span>Typisch Nederlandse fouten vermijden</h2>
+  <div class="card">
+    <table>
+      <tr><th>Niet zo</th><th>Maar zo</th></tr>
+      <tr><td class="wrong">I have 18 years.</td><td class="right">I am 18 years old.</td></tr><tr><td class="wrong">I work there since one year.</td><td class="right">I have worked there for one year.</td></tr><tr><td class="wrong">ALDI sell food.</td><td class="right">ALDI sells food. (he/she/it → +s)</td></tr><tr><td class="wrong">I work in Saturday.</td><td class="right">I work on Saturday.</td></tr><tr><td class="wrong">Saturday is the most busy day.</td><td class="right">Saturday is the busiest day.</td></tr><tr><td class="wrong">I learn a lot. (over het verleden)</td><td class="right">I learned a lot.</td></tr><tr><td class="wrong">I find it leuk.</td><td class="right">I like it. / I think it is fun.</td></tr><tr><td class="wrong">I give it an eight of ten.</td><td class="right">I give it an eight out of ten.</td></tr><tr><td class="wrong">I am in charge from the store.</td><td class="right">I am in charge of the store.</td></tr>
+    </table>
+  </div>
+
+  <h2 id="uitspraak"><span class="n">♪</span>Uitspraak van lastige woorden</h2>
+  <div class="pron">
+    <div><button class="say" data-say="deputy" title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><span><b>deputy</b><br>DEP-joe-tie</span></div><div><button class="say" data-say="manager" title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><span><b>manager</b><br>MEN-i-dzjer</span></div><div><button class="say" data-say="responsible" title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><span><b>responsible</b><br>rie-SPON-sie-bul</span></div><div><button class="say" data-say="colleague" title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><span><b>colleague</b><br>KOL-ieg</span></div><div><button class="say" data-say="Thursday" title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><span><b>Thursday</b><br>THURZ-dee (tong tussen je tanden)</span></div><div><button class="say" data-say="eighteen" title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><span><b>eighteen</b><br>ee-TIEN</span></div><div><button class="say" data-say="Germany" title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><span><b>Germany</b><br>DZJUR-mu-nie</span></div><div><button class="say" data-say="Netherlands" title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><span><b>Netherlands</b><br>NE-thur-lunds</span></div><div><button class="say" data-say="delivery" title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><span><b>delivery</b><br>die-LIV-u-rie</span></div><div><button class="say" data-say="safe" title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><span><b>safe</b><br>seef</span></div><div><button class="say" data-say="busiest" title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><span><b>busiest</b><br>BIZ-ie-ist</span></div><div><button class="say" data-say="shelves" title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><span><b>shelves</b><br>sjelvz</span></div><div><button class="say" data-say="checkout" title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><span><b>checkout</b><br>TSJEK-aut</span></div><div><button class="say" data-say="cash registers" title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><span><b>cash registers</b><br>kesj REDZJ-is-turz</span></div><div><button class="say" data-say="village" title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><span><b>village</b><br>VIL-idzj</span></div><div><button class="say" data-say="province" title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><span><b>province</b><br>PRO-vins</span></div><div><button class="say" data-say="discount" title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><span><b>discount</b><br>DIS-kaunt</span></div><div><button class="say" data-say="brothers" title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><span><b>brothers</b><br>BRU-thurz</span></div><div><button class="say" data-say="customers" title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><span><b>customers</b><br>KUS-tu-murz</span></div><div><button class="say" data-say="stressful" title="Luister" aria-label="Luister"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button><span><b>stressful</b><br>STRES-ful</span></div>
+  </div>
+  <p style="font-size:14px;color:var(--muted)">HOOFDLETTERS = daar ligt de klemtoon.</p>
+
+  <h2 id="plan"><span class="n">⏱</span>Oefenplan voor vandaag (± 45 min)</h2>
+  <div class="card">
+    <ol class="plan">
+      <li><b>10 min:</b> lees de hele tekst 2x hardop. Luister eerst met de luidspreker hoe het klinkt.</li>
+      <li><b>10 min:</b> open de presentatie. Kijk alleen naar de slide en vertel het verhaal zonder tekst. Druk op <kbd>N</kbd> als je vastloopt.</li>
+      <li><b>5 min:</b> doe de hele presentatie met de stopwatch. Doel: tussen 4:30 en 5:30. Ben je sneller? Gebruik de extra zinnen.</li>
+      <li><b>10 min:</b> laat iemand je 5 vragen stellen uit de lijst hierboven. Antwoord in hele zinnen.</li>
+      <li><b>5 min:</b> schrijf je 10 steekwoorden op een kaartje en doe het nog één keer met alleen dat kaartje.</li>
+      <li><b>Op school:</b> open <i>presentatie.html</i> op de schoolcomputer in Chrome of Edge en druk op <kbd>F</kbd> voor volledig scherm. Internet is niet nodig.</li>
+    </ol>
+  </div>
+  <div class="warn">Tijdens het examen gebruik je alleen je kaartje met 10 steekwoorden. Zet de spreektekst (N) en het presentatorscherm (P) dan níet aan.</div>
+
+  <h2 id="bediening"><span class="n">⌨</span>Bediening van de presentatie</h2>
+  <div class="card keys">
+    <table>
+      <tr><td><kbd>→</kbd> <kbd>spatie</kbd> of klik</td><td>volgende slide (tablet: veeg naar links)</td></tr>
+      <tr><td><kbd>←</kbd> of klik links</td><td>vorige slide</td></tr>
+      <tr><td><kbd>F</kbd></td><td>volledig scherm</td></tr>
+      <tr><td><kbd>N</kbd></td><td>spreektekst onderin het scherm (oefenen)</td></tr>
+      <tr><td><kbd>P</kbd></td><td>presentatorscherm in apart venster, met tekst, stopwatch en volgende slide (oefenen)</td></tr>
+      <tr><td><kbd>T</kbd> / <kbd>R</kbd></td><td>stopwatch pauzeren/starten · op 0 zetten (start vanzelf bij slide 2)</td></tr>
+      <tr><td><kbd>O</kbd></td><td>overzicht van alle slides, handig om bij een vraag terug te gaan</td></tr>
+      <tr><td><kbd>H</kbd></td><td>help</td></tr>
+    </table>
+  </div>
+</main>
+<footer class="f">ALDI-logo: ALDI Nord (via Wikimedia Commons), alleen gebruikt voor deze schoolpresentatie. Bedrijfsfeiten: ALDI is in 1946 begonnen in Essen (Duitsland), sinds 1973 in Nederland, bijna 500 winkels in Nederland en meer dan 10.000 wereldwijd.</footer>
+
+<script>
+(() => {
+  // text-to-speech (English)
+  const synth = window.speechSynthesis;
+  if (!synth) { document.querySelectorAll('.say').forEach(b => b.style.display = 'none'); }
+  let voice = null;
+  const pick = () => {
+    const v = synth ? synth.getVoices() : [];
+    voice = v.find(x => /en-GB/i.test(x.lang) && /female|Google UK|Sonia|Libby|Serena|Kate/i.test(x.name)) || v.find(x => /en-GB/i.test(x.lang)) || v.find(x => /^en/i.test(x.lang)) || null;
+  };
+  if (synth) { pick(); synth.onvoiceschanged = pick; }
+  let active = null;
+  document.addEventListener('click', e => {
+    const b = e.target.closest('.say'); if (!b || !synth) return;
+    if (active === b) { synth.cancel(); b.classList.remove('on'); active = null; return; }
+    synth.cancel(); if (active) active.classList.remove('on');
+    const u = new SpeechSynthesisUtterance(b.dataset.say);
+    u.lang = 'en-GB'; u.rate = 0.9; if (voice) u.voice = voice;
+    u.onend = u.onerror = () => { b.classList.remove('on'); if (active === b) active = null; };
+    active = b; b.classList.add('on'); synth.speak(u);
+  });
+  // stopwatch
+  const clock = document.getElementById('clock'), go = document.getElementById('go');
+  let run = false, t0 = 0, acc = 0;
+  const ms = () => acc + (run ? Date.now() - t0 : 0);
+  const draw = () => {
+    const s = Math.floor(ms() / 1000);
+    clock.textContent = Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
+    clock.className = 'clock' + (s >= 360 ? ' bad' : s >= 330 ? ' warn' : s >= 240 ? ' good' : '');
+  };
+  go.onclick = () => { if (run) { acc += Date.now() - t0; run = false; go.textContent = 'Start'; } else { t0 = Date.now(); run = true; go.textContent = 'Pauze'; } draw(); };
+  document.getElementById('rs').onclick = () => { run = false; acc = 0; go.textContent = 'Start'; draw(); };
+  setInterval(draw, 250);
+})();
+</script>
+</body>
+</html>
